@@ -1,4 +1,4 @@
-package org.transportadora.view.Registrations;
+package org.transportadora.view.registrations;
 
 import org.transportadora.model.Cliente;
 import org.transportadora.view.menus.ClienteMenus;

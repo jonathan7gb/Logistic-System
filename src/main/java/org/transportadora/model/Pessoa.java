@@ -32,6 +32,6 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return " - ID: " + id + " | Nome: " + nome;
+        return "|| ID: " + id + " | " + nome;
     }
 }

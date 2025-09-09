@@ -8,8 +8,7 @@ import java.util.List;
 public interface ClienteDaoInterface {
 
     void clienteRegister(Cliente cliente)  throws SQLException;
-//    List<Cliente> getAllClientes();
-//    Cliente getClienteByCpfCnpj(String cpfCnpj);
-//    void deleteCliente(String cpfCnpj);
-
+    List<Cliente> getAllClientes()  throws SQLException;
+//    Cliente getClienteByCpfCnpj(String cpfCnpj)  throws SQLException;
+//    void deleteCliente(String cpfCnpj)  throws SQLException;
 }

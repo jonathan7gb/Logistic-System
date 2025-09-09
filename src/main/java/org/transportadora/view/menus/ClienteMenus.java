@@ -1,5 +1,7 @@
 package org.transportadora.view.menus;
 
+import org.transportadora.exceptions.InvalidCpfCnpjException;
+import org.transportadora.model.domain.CpfCnpjValidate;
 import org.transportadora.model.enums.Estado;
 import org.transportadora.view.Inputs;
 
@@ -30,8 +32,19 @@ public class ClienteMenus {
     }
 
     public static String cpfCnpjClienteInput(){
-        String cpf_cnpj = Inputs.inputString("|| Digite o CPF/CNPJ do cliente: ", sc);
-        return cpf_cnpj;
+        while(true) {
+            String cpf_cnpj = Inputs.inputString("|| Digite o CPF/CNPJ do cliente: ", sc);
+
+            try {
+                boolean cpfCnpjValido = CpfCnpjValidate.validate(cpf_cnpj);
+                if (cpfCnpjValido) {
+                    return cpf_cnpj;
+                }
+            } catch (InvalidCpfCnpjException e) {
+                System.out.println("\n|| ==> Erro: " + e.getMessage() + "\n");
+            }
+        }
+
     }
 
     public static String enderecoClienteInput(){
