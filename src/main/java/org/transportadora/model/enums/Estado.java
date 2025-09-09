@@ -1,6 +1,6 @@
 package org.transportadora.model.enums;
 
-public enum Estados {
+public enum Estado {
 
     AC("Acre"),
     AL("Alagoas"),
@@ -32,7 +32,7 @@ public enum Estados {
 
     private final String nome;
 
-    Estados(String nome) {
+    Estado(String nome) {
         this.nome = nome;
     }
 
@@ -42,5 +42,14 @@ public enum Estados {
 
     public String getSigla() {
         return this.name();
+    }
+
+    public static Estado fromString(String estadoNome) {
+        for (Estado estado : Estado.values()) {
+            if (estado.getNome().equalsIgnoreCase(estadoNome)) {
+                return estado;
+            }
+        }
+        throw new IllegalArgumentException("Nome de estado inválido: " + estadoNome);
     }
 }

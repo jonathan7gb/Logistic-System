@@ -16,7 +16,9 @@ public class SystemController {
 
             switch (opcaoMenuPrincipal){
 
-                case 1 -> {}
+                case 1 -> {
+                    ClienteController.clienteController();
+                }
                 case 2 -> {}
                 case 3 -> {}
                 case 4 -> {}

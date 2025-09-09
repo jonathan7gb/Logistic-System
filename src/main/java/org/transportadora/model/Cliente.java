@@ -1,15 +1,15 @@
 package org.transportadora.model;
 
-import org.transportadora.model.enums.Estados;
+import org.transportadora.model.enums.Estado;
 
 public class Cliente extends Pessoa{
 
     private String cpf_cnpj;
     private String endereco;
     private String cidade;
-    private Estados estado;
+    private Estado estado;
 
-    public Cliente(String nome, String cpf_cnpj, String endereco, String cidade, Estados estado) {
+    public Cliente(String nome, String cpf_cnpj, String endereco, String cidade, Estado estado) {
         super(nome);
         this.cpf_cnpj = cpf_cnpj;
         this.endereco = endereco;
@@ -17,7 +17,7 @@ public class Cliente extends Pessoa{
         this.estado = estado;
     }
 
-    public Cliente(int id, String nome, String cpf_cnpj, String endereco, String cidade, Estados estado) {
+    public Cliente(int id, String nome, String cpf_cnpj, String endereco, String cidade, Estado estado) {
         super(id, nome);
         this.cpf_cnpj = cpf_cnpj;
         this.endereco = endereco;
@@ -37,7 +37,7 @@ public class Cliente extends Pessoa{
         return cidade;
     }
 
-    public Estados getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
@@ -53,7 +53,7 @@ public class Cliente extends Pessoa{
         this.cidade = cidade;
     }
 
-    public void setEstado(Estados estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
