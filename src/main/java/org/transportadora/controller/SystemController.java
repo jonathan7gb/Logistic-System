@@ -8,13 +8,12 @@ public class SystemController {
     MainMenu mainMenu = new MainMenu();
 
     public void startSystem(){
-        int opcaoMenuPrincipal = -1;
+        int mainMenuOption = -1;
 
         do{
+            mainMenuOption = mainMenu.mainMenu();
 
-            opcaoMenuPrincipal = mainMenu.mainMenu();
-
-            switch (opcaoMenuPrincipal){
+            switch (mainMenuOption){
 
                 case 1 -> {
                     ClienteController.clienteController();
@@ -31,7 +30,6 @@ public class SystemController {
                 }
 
             }
-
         }while(true);
 
     }

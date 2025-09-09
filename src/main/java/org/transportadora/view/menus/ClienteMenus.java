@@ -11,7 +11,7 @@ public class ClienteMenus {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static int menuCliente(){
+    public static int ClienteMenu(){
         System.out.print("""
                 \n|| ==================== MENU CLIENTE ==================== ||
                 || 1 - CADASTRAR CLIENTE

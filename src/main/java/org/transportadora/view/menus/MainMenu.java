@@ -19,7 +19,7 @@ public class MainMenu {
                 || 0 - SAIR DO SISTEMA
                 || ============================================
                 """);
-            int opcao = inputs.inputInteger("|| Escolha uma opção: ", sc);
-            return opcao;
+            int option = inputs.inputInteger("|| Escolha uma opção: ", sc);
+            return option;
     }
 }
