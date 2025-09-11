@@ -45,6 +45,6 @@ public class Motorista extends Pessoa{
 
     @Override
     public String toString() {
-        return super.toString() + " | CNH: " + cnh + " | Veículo: " + veiculo + " | Cidade Base: " + cidade_base;
+        return super.toString() + " | CNH: " + cnh + "\n|| Veículo: " + veiculo + " | Cidade Base: " + cidade_base;
     }
 }

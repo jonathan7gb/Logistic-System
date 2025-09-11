@@ -15,7 +15,7 @@ public class ClienteList {
             System.out.println("-------------------------------------------------------------");
         }
         }catch (InterruptedException e){
-            System.out.println("\n|| <=== ERRO AO LISTAR OS USUÁRIOS ===> ||");
+            System.out.println("\n|| <=== ERRO AO LISTAR OS CLIENTES ===> ||");
         }
     }
 }

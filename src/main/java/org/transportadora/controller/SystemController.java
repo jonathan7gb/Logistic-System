@@ -18,7 +18,9 @@ public class SystemController {
                 case 1 -> {
                     ClienteController.clienteController();
                 }
-                case 2 -> {}
+                case 2 -> {
+                    MotoristaController.motoristaController();
+                }
                 case 3 -> {}
                 case 4 -> {}
                 case 0 -> {

@@ -18,6 +18,7 @@ CREATE TABLE Motorista (
     veiculo VARCHAR(80),
     cidade_base VARCHAR(80)
 );
+select * from Motorista;
 
 CREATE TABLE Pedido (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -25,7 +26,7 @@ CREATE TABLE Pedido (
     data_pedido DATE NOT NULL,
     volume_m3 DECIMAL(10,2),
     peso_kg DECIMAL(10,2),
-    status ENUM('PENDENTE', 'ENTREGUE', 'CANCELADO') DEFAULT 'PENDENTE' ,
+    status ENUM('PENDENTE', 'ENTREGUE', 'CANCELADO') DEFAULT 'PENDENTE',
     FOREIGN KEY (cliente_id) REFERENCES Cliente(id) ON DELETE CASCADE
 );
 

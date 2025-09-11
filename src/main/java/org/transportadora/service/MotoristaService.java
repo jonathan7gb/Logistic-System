@@ -1,0 +1,89 @@
+package org.transportadora.service;
+
+import org.transportadora.dao.MotoristaDAO;
+import org.transportadora.model.Motorista;
+import org.transportadora.view.menus.MotoristaMenus;
+import org.transportadora.view.utils.MotoristaList;
+import org.transportadora.view.utils.MotoristaRegister;
+import org.transportadora.view.utils.MotoristaSearchByNameOrCnh;
+
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MotoristaService {
+    MotoristaDAO motoristaDAO =  new MotoristaDAO();
+    MotoristaList motoristaList = new MotoristaList();
+
+    public void registerMotorista(){
+        boolean cadastroConcluido = false;
+        while(!cadastroConcluido){
+            Motorista motorista = MotoristaRegister.registerMotorista();
+
+            try{
+                motoristaDAO.motoristaRegister(motorista);
+                cadastroConcluido = true;
+            }catch (SQLIntegrityConstraintViolationException e) {
+                System.err.print("Motorista já cadastrado com esse CNH. Vamos recomeçar o cadastro. Insira o nome: ");
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void getAllMotoristas(){
+        List<Motorista> motoristas = new ArrayList<>();
+
+        try{
+            motoristas = motoristaDAO.getAllMotoristas();
+
+            if(motoristas.isEmpty()){
+                System.out.println("\n|| ==== Nenhum motorista cadastrado no sistema. ==== ||");
+            }else{
+                motoristaList.PrintMotoristaList(motoristas);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void getMotoristaByCnhOrName(){
+        List<Motorista> motoristas = new ArrayList<>();
+
+        try{
+            String nameOrCnh = MotoristaSearchByNameOrCnh.MotoristaNameOrCnh();
+
+            motoristas = motoristaDAO.getMotoristaByCnhOrName(nameOrCnh);
+
+            if (motoristas.isEmpty()){
+                System.out.println("\n|| ==== Nenhum motorista encontrado com esse nome ou CNH. ==== ||");
+            }else{
+                motoristaList.PrintMotoristaList(motoristas);
+            }
+        }catch (SQLException e){
+            System.out.println("\n|| ==== Erro ao buscar o motorista no sistema. ==== ||");
+        }
+    }
+
+    public void deleteMotorista(){
+        try{
+            String cnh = MotoristaMenus.cnhMotoristaInput();
+            boolean confirmDelete = MotoristaSearchByNameOrCnh.confirmDelete();
+            if(confirmDelete){
+                boolean excluido = motoristaDAO.deleteMotorista(cnh);
+
+                if(excluido){
+                    System.out.println("\n|| ====== MOTORISTA EXCLUÍDO COM SUCESSO! ====== ||");
+                }else{
+                    System.out.println("\n|| ==== NENHUM MOTORISTA ENCONTRADO COM ESSE CNH. ==== ||");
+                }
+            }else{
+                System.out.println("\n|| ==== EXCLUSÃO CANCELADA PELO USUÁRIO ==== ||");
+            }
+
+        }catch (SQLException e ){
+            System.out.println("\n|| ==== Erro ao excluir motorista no sistema. ==== ||");
+        }
+    }
+}
