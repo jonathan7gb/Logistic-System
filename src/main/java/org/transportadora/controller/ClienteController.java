@@ -1,17 +1,8 @@
 package org.transportadora.controller;
 
-import org.transportadora.dao.ClienteDAO;
-import org.transportadora.exceptions.InvalidCpfCnpjException;
-import org.transportadora.model.Cliente;
 import org.transportadora.service.ClienteService;
 import org.transportadora.view.Errors;
-import org.transportadora.view.registrations.ClienteRegister;
 import org.transportadora.view.menus.ClienteMenus;
-
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClienteController {
 
@@ -32,10 +23,12 @@ public class ClienteController {
                 }//BREAK CASE 2 DO SWITCH OPCAO - LISTAR CLIENTES
 
                 case 3 -> {
-                }//BREAK CASE 1 DO SWITCH OPCAO - BUSCAR CLIENTES
+                    clienteService.getClienteByCpfCnpjOrName();
+                }//BREAK CASE 3 DO SWITCH OPCAO - BUSCAR CLIENTES
 
                 case 4 -> {
-                }//BREAK CASE 1 DO SWITCH OPCAO - EXCLUIR CLIENTE
+                    clienteService.deleteCliente();
+                }//BREAK CASE 4 DO SWITCH OPCAO - EXCLUIR CLIENTE
 
                 case 0 -> {
                     return;

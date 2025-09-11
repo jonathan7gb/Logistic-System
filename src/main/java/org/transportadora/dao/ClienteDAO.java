@@ -55,5 +55,46 @@ public class ClienteDAO implements ClienteDaoInterface {
         return lista_clientes;
     }
 
+
+    public List<Cliente> getClienteByCpfCnpjOrName(String cpfOrName)  throws SQLException {
+        List<Cliente> lista_clientes = new ArrayList<>();
+
+        String sqlComand = "SELECT id, nome, cpf_cnpj, endereco, cidade, estado FROM Cliente WHERE cpf_cnpj = ? OR nome LIKE ?";
+
+        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setString(1, cpfOrName);
+            stmt.setString(2, "%" + cpfOrName + "%");
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String cpf_cnpj = rs.getString("cpf_cnpj");
+                String endereco = rs.getString("endereco");
+                String cidade = rs.getString("cidade");
+                String estado = rs.getString("estado");
+
+                Cliente cliente = new Cliente(id, nome, cpf_cnpj, endereco, cidade, Estado.valueOf(estado));
+                lista_clientes.add(cliente);
+            }
+        }
+
+        return lista_clientes;
+    }
+
+
+    public boolean deleteCliente(String cpfCnpj)  throws SQLException{
+        String sqlComand = "DELETE FROM Cliente WHERE cpf_cnpj = ?";
+        boolean excluido = false;
+
+        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setString(1, cpfCnpj);
+            stmt.executeUpdate();
+            excluido = true;
+        }
+
+        return excluido;
+    }
+
 }
 

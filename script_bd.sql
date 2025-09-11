@@ -9,6 +9,7 @@ CREATE TABLE Cliente (
     cidade VARCHAR(80),
     estado CHAR(2)
 );
+select * from Cliente;
 
 CREATE TABLE Motorista (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,8 +25,8 @@ CREATE TABLE Pedido (
     data_pedido DATE NOT NULL,
     volume_m3 DECIMAL(10,2),
     peso_kg DECIMAL(10,2),
-    status ENUM('PENDENTE', 'ENTREGUE', 'CANCELADO') DEFAULT 'PENDENTE',
-    FOREIGN KEY (cliente_id) REFERENCES Cliente(id)
+    status ENUM('PENDENTE', 'ENTREGUE', 'CANCELADO') DEFAULT 'PENDENTE' ,
+    FOREIGN KEY (cliente_id) REFERENCES Cliente(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Entrega (
@@ -35,8 +36,8 @@ CREATE TABLE Entrega (
     data_saida DATE,
     data_entrega DATE,
     status ENUM('EM_ROTA', 'ENTREGUE', 'ATRASADA') DEFAULT 'EM_ROTA',
-    FOREIGN KEY (pedido_id) REFERENCES Pedido(id),
-    FOREIGN KEY (motorista_id) REFERENCES Motorista(id)
+    FOREIGN KEY (pedido_id) REFERENCES Pedido(id) ON DELETE CASCADE,
+    FOREIGN KEY (motorista_id) REFERENCES Motorista(id) ON DELETE CASCADE
 );
 
 CREATE TABLE HistoricoEntrega (
@@ -44,5 +45,5 @@ CREATE TABLE HistoricoEntrega (
     entrega_id INT NOT NULL,
     data_evento DATETIME NOT NULL,
     descricao VARCHAR(255),
-    FOREIGN KEY (entrega_id) REFERENCES Entrega(id)
+    FOREIGN KEY (entrega_id) REFERENCES Entrega(id) ON DELETE CASCADE
 );
