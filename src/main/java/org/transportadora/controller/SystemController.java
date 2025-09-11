@@ -21,7 +21,9 @@ public class SystemController {
                 case 2 -> {
                     MotoristaController.motoristaController(); // Chama o controlador de motoristas
                 }
-                case 3 -> {} // Chama o controlador de pedidos
+                case 3 -> {
+                    PedidoController.pedidoController();
+                } // Chama o controlador de pedidos
                 case 4 -> {} // Chama o controlador de entregas
                 case 5 -> {} // Chama o controlador de relatórios
                 case 0 -> {
