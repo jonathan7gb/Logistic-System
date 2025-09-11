@@ -16,19 +16,20 @@ public class SystemController {
             switch (mainMenuOption){
 
                 case 1 -> {
-                    ClienteController.clienteController();
+                    ClienteController.clienteController(); // Chama o controlador de clientes
                 }
                 case 2 -> {
-                    MotoristaController.motoristaController();
+                    MotoristaController.motoristaController(); // Chama o controlador de motoristas
                 }
-                case 3 -> {}
-                case 4 -> {}
+                case 3 -> {} // Chama o controlador de pedidos
+                case 4 -> {} // Chama o controlador de entregas
+                case 5 -> {} // Chama o controlador de relatórios
                 case 0 -> {
-                    SystemEnd.systemEnd();
+                    SystemEnd.systemEnd(); // Mensagem de encerramento do sistema
                     return;
                 }
                 default -> {
-                    System.out.println("|| Opção inválida! Tente novamente.");
+                    System.out.println("|| Opção inválida! Tente novamente."); // Mensagem de opção inválida
                 }
 
             }

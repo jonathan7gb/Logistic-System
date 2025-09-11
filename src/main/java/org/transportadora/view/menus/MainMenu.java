@@ -16,6 +16,7 @@ public class MainMenu {
                 || 2 - GERENCIAR MOTORISTAS
                 || 3 - GERENCIAR PEDIDOS
                 || 4 - GERENCIAR ENTREGAS
+                || 5 - RELATÓRIOS
                 || 0 - SAIR DO SISTEMA
                 || ============================================
                 """);
