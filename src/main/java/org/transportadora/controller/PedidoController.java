@@ -19,7 +19,7 @@ public class PedidoController {
                 } //BREAK CASE 1 DO SWITCH OPCAO - CADASTRAR CLIENTE
 
                 case 2 -> {
-//                    pedidoService.getAllPedidos();
+                    pedidoService.getAllPedidos();
                 }//BREAK CASE 2 DO SWITCH OPCAO - LISTAR CLIENTES
 
                 case 3 -> {

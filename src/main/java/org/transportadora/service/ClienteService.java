@@ -86,4 +86,21 @@ public class ClienteService {
             System.out.println("\n|| ==== Erro ao excluir cliente no sistema. ==== ||");
         }
     }
+
+    public Cliente verifyIfExistsCliente(int id){
+        Cliente cliente = null;
+        try{
+            List<Cliente> clientes = clienteDAO.getAllClientes();
+            for(Cliente c : clientes){
+                if(c.getId() == id){
+                    cliente = c;
+                    cliente = new Cliente(c.getId(), c.getNome(), c.getCpf_cnpj(), c.getEndereco(), c.getCidade(), c.getEstado());
+                    break;
+                }
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cliente;
+    }
 }
