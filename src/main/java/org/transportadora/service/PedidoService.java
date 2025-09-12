@@ -3,6 +3,8 @@ package org.transportadora.service;
 import org.transportadora.dao.PedidoDAO;
 import org.transportadora.model.Pedido;
 import org.transportadora.model.Pedido;
+import org.transportadora.view.menus.ClienteMenus;
+import org.transportadora.view.menus.PedidoMenus;
 import org.transportadora.view.utils.ClientSearchByNameOrCpf;
 import org.transportadora.view.utils.PedidoList;
 import org.transportadora.view.utils.PedidoRegister;
@@ -60,6 +62,29 @@ public class PedidoService {
             }
         }catch (SQLException e){
             System.out.println("\n|| ==== Erro ao buscar o pedido no sistema. ==== ||");
+        }
+    }
+
+
+
+    public void deletePedido(){
+        try{
+            int idPedido = PedidoMenus.idPedidoInput();
+            boolean confirmDelete = PedidoList.confirmDelete();
+            if(confirmDelete){
+                boolean excluido = pedidoDAO.deletePedido(idPedido);
+
+                if(excluido){
+                    System.out.println("\n|| ====== PEDIDO EXCLUÍDO COM SUCESSO! ====== ||");
+                }else{
+                    System.out.println("|| ==== NENHUM PEDIDO ENCONTRADO COM ESSE ID ==== ||");
+                }
+            }else{
+                System.out.println("\n|| ==== EXCLUSÃO CANCELADA PELO USUÁRIO ==== ||");
+            }
+
+        }catch (SQLException e ){
+            System.out.println("\n|| ==== Erro ao excluir pedido no sistema. ==== ||");
         }
     }
 }

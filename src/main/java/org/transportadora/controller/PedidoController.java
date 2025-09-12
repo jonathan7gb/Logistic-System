@@ -32,7 +32,11 @@ public class PedidoController {
 
                 case 5 -> {
 //                    pedidoService.cancelPedido();
-                }//BREAK CASE 4 DO SWITCH OPCAO - CANCELAR PEDIDO
+                }//BREAK CASE 5 DO SWITCH OPCAO - CANCELAR PEDIDO
+
+                case 6 -> {
+                    pedidoService.deletePedido();
+                }//BREAK CASE 6 DO SWITCH OPCAO - EXCLUIR PEDIDO
 
                 case 0 -> {
                     return;

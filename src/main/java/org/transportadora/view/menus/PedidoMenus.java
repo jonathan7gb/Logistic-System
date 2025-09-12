@@ -21,6 +21,7 @@ public class PedidoMenus {
                 || 3 - BUSCAR PEDIDO POR CPF/CNPJ DO CLIENTE
                 || 4 - SETAR PEDIDO COMO ENTREGUE
                 || 5 - CANCELAR PEDIDO
+                || 6 - EXCLUIR PEDIDO
                 || 0 - VOLTAR AO MENU PRINCIPAL
                 || =====================================================
                 """);
@@ -49,5 +50,9 @@ public class PedidoMenus {
         return statusEnum;
     }
 
+    public static int idPedidoInput(){
+        int idPedido = Inputs.inputInteger("|| Digite o ID do pedido: ", sc);
+        return idPedido;
+    }
 
 }

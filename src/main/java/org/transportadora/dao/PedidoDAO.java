@@ -100,20 +100,45 @@ public class PedidoDAO implements PedidoDaoInterface {
 
         return lista_pedidos;
     }
-//
-//
-//    public boolean cancelPedido(String cpfCnpj)  throws SQLException{
-//        String sqlComand = "DELETE FROM Pedido WHERE data_pedido = ?";
-//        boolean excluido = false;
-//
-//        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
-//            stmt.setString(1, cpfCnpj);
-//            stmt.executeUpdate();
-//            excluido = true;
-//        }
-//
-//        return excluido;
-//    }
+
+    public boolean deliverPedido(int idPedido)  throws SQLException{
+        String sqlComand = "UPDATE Pedido SET status = 'ENTREGUE' WHERE id = ?";
+        boolean entregue = false;
+
+        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setInt(1, idPedido);
+            stmt.executeUpdate();
+            entregue = true;
+        }
+
+        return entregue;
+    }
+
+    public boolean cancelPedido(int idPedido)  throws SQLException{
+        String sqlComand = "UPDATE Pedido SET status = 'CANCELADO' WHERE id = ?";
+        boolean cancelado = false;
+
+        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setInt(1, idPedido);
+            stmt.executeUpdate();
+            cancelado = true;
+        }
+
+        return cancelado;
+    }
+
+    public boolean deletePedido(int idPedido)  throws SQLException{
+        String sqlComand = "DELETE FROM Pedido WHERE id = ?";
+        boolean excluido = false;
+
+        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setInt(1, idPedido);
+            stmt.executeUpdate();
+            excluido = true;
+        }
+
+        return excluido;
+    }
 
 }
 
