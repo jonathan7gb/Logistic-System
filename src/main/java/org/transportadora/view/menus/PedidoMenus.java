@@ -19,7 +19,8 @@ public class PedidoMenus {
                 || 1 - CRIAR PEDIDO
                 || 2 - LISTAR PEDIDOS
                 || 3 - BUSCAR PEDIDO POR CPF/CNPJ DO CLIENTE
-                || 4 - CANCELAR PEDIDO
+                || 4 - SETAR PEDIDO COMO ENTREGUE
+                || 5 - CANCELAR PEDIDO
                 || 0 - VOLTAR AO MENU PRINCIPAL
                 || =====================================================
                 """);
@@ -28,11 +29,10 @@ public class PedidoMenus {
         return opcao;
     }
 
-
-        public static Date dataPedidoInput(){
-            Date dataPedido = Inputs.inputDate("|| Digite a data do pedido (dd/mm/aaaa): ", sc);
-            return dataPedido;
-        }
+    public static Date dataPedidoInput(){
+        Date dataPedido = Inputs.inputDate("|| Digite a data do pedido (dd/mm/aaaa): ", sc);
+        return dataPedido;
+    }
 
     public static double volumeM3PedidoInput(){
         double volume = Inputs.inputDouble("|| Digite o volume em m³ do pedido: ", sc);
@@ -43,26 +43,8 @@ public class PedidoMenus {
         return peso;
     }
 
-    public static StatusPedido statusPedidoInput(){
+    public static StatusPedido statusPedido(){
         StatusPedido statusEnum = StatusPedido.PENDENTE; // Valor padrão
-
-        System.out.println("""
-                || Escolha o status do pedido:
-                || 1 - PENDENTE
-                || 2 - ENTREGUE
-                || 3 - CANCELADO""");
-        int status = Inputs.inputInteger("|| Digite o status do pedido: ", sc);
-
-        if(status == 1){
-            statusEnum = StatusPedido.PENDENTE;
-        } else if (status == 2) {
-            statusEnum = StatusPedido.ENTREGUE;
-        } else if (status == 3) {
-            statusEnum = StatusPedido.CANCELADO;
-        } else {
-            System.out.println("|| Opção inválida. O status será definido como PENDENTE por padrão.");
-        }
-
 
         return statusEnum;
     }

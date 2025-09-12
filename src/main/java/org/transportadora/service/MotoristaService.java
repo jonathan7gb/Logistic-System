@@ -39,7 +39,7 @@ public class MotoristaService {
             motoristas = motoristaDAO.getAllMotoristas();
 
             if(motoristas.isEmpty()){
-                System.out.println("\n|| ==== Nenhum motorista cadastrado no sistema. ==== ||");
+                System.out.println("|| ==== Nenhum motorista cadastrado no sistema. ==== ||");
             }else{
                 motoristaList.PrintMotoristaList(motoristas);
             }

@@ -3,6 +3,7 @@ package org.transportadora.service;
 import org.transportadora.dao.PedidoDAO;
 import org.transportadora.model.Pedido;
 import org.transportadora.model.Pedido;
+import org.transportadora.view.utils.ClientSearchByNameOrCpf;
 import org.transportadora.view.utils.PedidoList;
 import org.transportadora.view.utils.PedidoRegister;
 
@@ -41,6 +42,24 @@ public class PedidoService {
             }
         }catch (SQLException e){
             e.printStackTrace();
+        }
+    }
+
+    public void getPedidoByCpfCnpjOrName(){
+        List<Pedido> pedidos = new ArrayList<>();
+
+        try{
+            String nameOrCpf = ClientSearchByNameOrCpf.ClienteNameOrCpf();
+
+            pedidos = pedidoDAO.getPedidoByCpfCnpjOrNameCliente(nameOrCpf);
+
+            if (pedidos.isEmpty()){
+                System.out.println("|| ==== Nenhum pedido encontrado com esse nome ou CPF/CNPJ. ==== ||");
+            }else{
+                pedidoList.PrintPedidoList(pedidos);
+            }
+        }catch (SQLException e){
+            System.out.println("\n|| ==== Erro ao buscar o pedido no sistema. ==== ||");
         }
     }
 }

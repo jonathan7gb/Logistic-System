@@ -16,23 +16,27 @@ public class PedidoController {
             switch (option) {
                 case 1 -> {
                     pedidoService.registerPedido();
-                } //BREAK CASE 1 DO SWITCH OPCAO - CADASTRAR CLIENTE
+                } //BREAK CASE 1 DO SWITCH OPCAO - CRIAR PEDIDO
 
                 case 2 -> {
                     pedidoService.getAllPedidos();
-                }//BREAK CASE 2 DO SWITCH OPCAO - LISTAR CLIENTES
+                }//BREAK CASE 2 DO SWITCH OPCAO - LISTAR PEDIDOS
 
                 case 3 -> {
-//                    pedidoService.getPedidoByCpfCnpjOrName();
-                }//BREAK CASE 3 DO SWITCH OPCAO - BUSCAR CLIENTES
+                    pedidoService.getPedidoByCpfCnpjOrName();
+                }//BREAK CASE 3 DO SWITCH OPCAO - BUSCAR PEDIDOS
 
                 case 4 -> {
+                    //pedidoService.deliverPedido();
+                }//BREAK CASE 4 DO SWITCH OPCAO - ENTREGAR PEDIDO
+
+                case 5 -> {
 //                    pedidoService.cancelPedido();
-                }//BREAK CASE 4 DO SWITCH OPCAO - EXCLUIR CLIENTE
+                }//BREAK CASE 4 DO SWITCH OPCAO - CANCELAR PEDIDO
 
                 case 0 -> {
                     return;
-                }//BREAK CASE 0 DO SWITCH OPCAO - SAIR DO MENU CLIENTE
+                }//BREAK CASE 0 DO SWITCH OPCAO - SAIR DO MENU PEDIDO
 
                 default -> {
                     Errors.invalidOption();

@@ -64,36 +64,42 @@ public class PedidoDAO implements PedidoDaoInterface {
     }
 
 
-//    public List<Pedido> getPedidoByCpfCnpjOrNameCliente(String cpfOrName)  throws SQLException {
-//        List<Pedido> lista_pedidos = new ArrayList<>();
-//
-//        String sqlComand = """
-//               SELECT p.id, p.cliente_id, p.data_pedido, p.volume_m3, p.peso_kg, p.status
-//               FROM Pedido p
-//               JOIN Cliente c ON p.cliente_id = c.id
-//               WHERE c.cpf_cnpj = ?;
-//                """;
-//
-//        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
-//            stmt.setString(1, cpfOrName);
-//            stmt.setString(2, "%" + cpfOrName + "%");
-//
-//            ResultSet rs = stmt.executeQuery();
-//            while (rs.next()) {
-//                int id = rs.getInt("id");
-//                int cliente_id = rs.getInt("cliente_id");
-//                String data_pedido = rs.getString("data_pedido");
-//                String volume_m3 = rs.getString("volume_m3");
-//                String peso_kg = rs.getString("peso_kg");
-//                String estado = rs.getString("status");
-//
-//                Pedido pedido = new Pedido(id, cliente_id, data_pedido, volume_m3, peso_kg, Estado.valueOf(estado));
-//                lista_pedidos.add(pedido);
-//            }
-//        }
-//
-//        return lista_pedidos;
-//    }
+    public List<Pedido> getPedidoByCpfCnpjOrNameCliente(String cpfOrName)  throws SQLException {
+        List<Pedido> lista_pedidos = new ArrayList<>();
+
+        String sqlComand = """
+               SELECT p.id, p.cliente_id, c.nome, p.data_pedido, p.volume_m3, p.peso_kg, p.status
+               FROM Pedido p
+               JOIN Cliente c ON p.cliente_id = c.id
+               WHERE c.cpf_cnpj = ? or c.nome LIKE ?;
+                """;
+
+        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setString(1, cpfOrName);
+            stmt.setString(2, "%" + cpfOrName + "%");
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int cliente_id = rs.getInt("cliente_id");
+                Date data_pedido = rs.getDate("data_pedido");
+                double volume_m3 = rs.getDouble("volume_m3");
+                double peso_kg = rs.getDouble("peso_kg");
+                String status = rs.getString("status");
+
+                Cliente cliente = clienteService.verifyIfExistsCliente(cliente_id);
+                if(cliente == null) {
+                    System.out.println("Cliente com ID " + cliente_id + " não encontrado. Pulando este pedido.");
+                    continue; // Pula para a próxima iteração do loop
+                }else{
+                    Pedido pedido = new Pedido(id, cliente, data_pedido, volume_m3, peso_kg, StatusPedido.valueOf(status));
+                    lista_pedidos.add(pedido);
+                }
+            }
+        }
+
+        return lista_pedidos;
+    }
 //
 //
 //    public boolean cancelPedido(String cpfCnpj)  throws SQLException{

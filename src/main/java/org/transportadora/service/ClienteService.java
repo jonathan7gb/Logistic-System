@@ -76,7 +76,7 @@ public class ClienteService {
                 if(excluido){
                     System.out.println("\n|| ====== CLIENTE EXCLUÍDO COM SUCESSO! ====== ||");
                 }else{
-                    System.out.println("\n|| ==== NENHUM CLIENTE ENCONTRADO COM ESSE CPF/CNPJ. ==== ||");
+                    System.out.println("|| ==== NENHUM CLIENTE ENCONTRADO COM ESSE CPF/CNPJ. ==== ||");
                 }
             }else{
                 System.out.println("\n|| ==== EXCLUSÃO CANCELADA PELO USUÁRIO ==== ||");

@@ -45,7 +45,7 @@ public class PedidoRegister {
             Date data = PedidoMenus.dataPedidoInput();
             double volume = PedidoMenus.volumeM3PedidoInput();
             double peso = PedidoMenus.pesoKGPedidoInput();
-            StatusPedido status = PedidoMenus.statusPedidoInput();
+            StatusPedido status = PedidoMenus.statusPedido();
 
             return new Pedido(cliente, data, volume, peso, status);
         }
