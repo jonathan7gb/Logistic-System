@@ -102,29 +102,25 @@ public class PedidoDAO implements PedidoDaoInterface {
     }
 
     public boolean deliverPedido(int idPedido)  throws SQLException{
-        String sqlComand = "UPDATE Pedido SET status = 'ENTREGUE' WHERE id = ?";
-        boolean entregue = false;
+        String sqlComand = "UPDATE Pedido SET status = 'ENTREGUE' WHERE id = ? AND status != 'CANCELADO'";
 
         try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
             stmt.setInt(1, idPedido);
-            stmt.executeUpdate();
-            entregue = true;
+            int rows = stmt.executeUpdate(); // pega quantas linhas foram afetadas
+            return rows > 0;
         }
 
-        return entregue;
     }
 
     public boolean cancelPedido(int idPedido)  throws SQLException{
-        String sqlComand = "UPDATE Pedido SET status = 'CANCELADO' WHERE id = ?";
-        boolean cancelado = false;
+        String sqlComand = "UPDATE Pedido SET status = 'CANCELADO' WHERE id = ? AND status != 'ENTREGUE'";
 
         try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
             stmt.setInt(1, idPedido);
-            stmt.executeUpdate();
-            cancelado = true;
+            int rows = stmt.executeUpdate(); // pega quantas linhas foram afetadas
+            return rows > 0;
         }
 
-        return cancelado;
     }
 
     public boolean deletePedido(int idPedido)  throws SQLException{

@@ -65,7 +65,35 @@ public class PedidoService {
         }
     }
 
+    public void deliverPedido(){
+        try{
+            int idPedido = PedidoMenus.idPedidoInput();
+            boolean atualizado = pedidoDAO.deliverPedido(idPedido);
 
+            if(atualizado){
+                System.out.println("\n|| ====== PEDIDO ENTREGUE COM SUCESSO! ====== ||");
+            }else{
+                System.out.println("|| ==== ID NÃO ENCONTRADO OU ATUALIZAÇÃO NÃO AUTORIZADA ==== ||");
+            }
+        }catch (SQLException e ){
+            System.out.println("\n|| ==== Erro ao entregar o pedido no sistema. ==== ||");
+        }
+    }
+
+    public void cancelPedido(){
+        try{
+            int idPedido = PedidoMenus.idPedidoInput();
+            boolean atualizado = pedidoDAO.cancelPedido(idPedido);
+
+            if(atualizado){
+                System.out.println("\n|| ====== PEDIDO CANCELADO COM SUCESSO! ====== ||");
+            }else{
+                System.out.println("|| ==== ID NÃO ENCONTRADO OU ATUALIZAÇÃO NÃO AUTORIZADA ==== ||");
+            }
+        }catch (SQLException e ){
+            System.out.println("\n|| ==== Erro ao cancelar o pedido no sistema. ==== ||");
+        }
+    }
 
     public void deletePedido(){
         try{

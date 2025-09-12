@@ -27,11 +27,11 @@ public class PedidoController {
                 }//BREAK CASE 3 DO SWITCH OPCAO - BUSCAR PEDIDOS
 
                 case 4 -> {
-                    //pedidoService.deliverPedido();
+                    pedidoService.deliverPedido();
                 }//BREAK CASE 4 DO SWITCH OPCAO - ENTREGAR PEDIDO
 
                 case 5 -> {
-//                    pedidoService.cancelPedido();
+                    pedidoService.cancelPedido();
                 }//BREAK CASE 5 DO SWITCH OPCAO - CANCELAR PEDIDO
 
                 case 6 -> {
