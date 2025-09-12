@@ -1,5 +1,6 @@
 package org.transportadora.controller;
 
+import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.SystemEnd;
 import org.transportadora.view.menus.MainMenu;
 
@@ -31,7 +32,7 @@ public class SystemController {
                     return;
                 }
                 default -> {
-                    System.out.println("|| Opção inválida! Tente novamente."); // Mensagem de opção inválida
+                    MessagesHelper.error(" Opção inválida! Tente novamente.\n");
                 }
 
             }

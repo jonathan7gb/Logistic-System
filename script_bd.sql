@@ -29,6 +29,7 @@ CREATE TABLE Pedido (
     status ENUM('PENDENTE', 'ENTREGUE', 'CANCELADO') DEFAULT 'PENDENTE',
     FOREIGN KEY (cliente_id) REFERENCES Cliente(id) ON DELETE CASCADE
 );
+select * from Pedido;
 
 CREATE TABLE Entrega (
     id INT AUTO_INCREMENT PRIMARY KEY,

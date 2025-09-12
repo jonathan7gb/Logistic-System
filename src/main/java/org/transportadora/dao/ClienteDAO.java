@@ -4,6 +4,7 @@ import org.transportadora.dao.interfaces.ClienteDaoInterface;
 import org.transportadora.model.Cliente;
 import org.transportadora.model.enums.Estado;
 import org.transportadora.repository.ConnectDatabase;
+import org.transportadora.view.MessagesHelper;
 
 import javax.xml.transform.Result;
 import java.sql.Connection;
@@ -27,7 +28,6 @@ public class ClienteDAO implements ClienteDaoInterface {
             stmt.setString(4, cliente.getCidade());
             stmt.setString(5, String.valueOf(cliente.getEstado()));
             stmt.executeUpdate();
-            System.out.println("\n|| ====== CLIENTE CADASTRADO COM SUCESSO! ====== ||");
         }
     }
 

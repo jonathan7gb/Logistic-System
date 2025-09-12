@@ -1,10 +1,7 @@
 package org.transportadora.view.menus;
 
-import org.transportadora.exceptions.InvalidCpfCnpjException;
-import org.transportadora.model.domain.CpfCnpjValidate;
-import org.transportadora.model.enums.Estado;
 import org.transportadora.model.enums.StatusPedido;
-import org.transportadora.view.Inputs;
+import org.transportadora.view.InputHelper;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -25,22 +22,22 @@ public class PedidoMenus {
                 || 0 - VOLTAR AO MENU PRINCIPAL
                 || =====================================================
                 """);
-        int opcao = Inputs.inputInteger("|| Escolha uma opção: ", sc);
+        int opcao = InputHelper.inputInteger("|| Escolha uma opção: ", sc);
         System.out.println();
         return opcao;
     }
 
     public static Date dataPedidoInput(){
-        Date dataPedido = Inputs.inputDate("|| Digite a data do pedido (dd/mm/aaaa): ", sc);
+        Date dataPedido = InputHelper.inputDate("|| Digite a data do pedido (dd/mm/aaaa): ", sc);
         return dataPedido;
     }
 
     public static double volumeM3PedidoInput(){
-        double volume = Inputs.inputDouble("|| Digite o volume em m³ do pedido: ", sc);
+        double volume = InputHelper.inputDouble("|| Digite o volume em m³ do pedido: ", sc);
         return volume;
     }
     public static double pesoKGPedidoInput(){
-        double peso = Inputs.inputDouble("|| Digite o peso em KG do volume: ", sc);
+        double peso = InputHelper.inputDouble("|| Digite o peso em KG do volume: ", sc);
         return peso;
     }
 
@@ -51,7 +48,7 @@ public class PedidoMenus {
     }
 
     public static int idPedidoInput(){
-        int idPedido = Inputs.inputInteger("|| Digite o ID do pedido: ", sc);
+        int idPedido = InputHelper.inputInteger("|| Digite o ID do pedido: ", sc);
         return idPedido;
     }
 

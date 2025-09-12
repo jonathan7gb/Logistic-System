@@ -2,6 +2,7 @@ package org.transportadora.service;
 
 import org.transportadora.dao.ClienteDAO;
 import org.transportadora.model.Cliente;
+import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.ClienteMenus;
 import org.transportadora.view.utils.ClientSearchByNameOrCpf;
 import org.transportadora.view.utils.ClienteRegister;
@@ -23,6 +24,7 @@ public class ClienteService {
 
             try{
                 clienteDAO.clienteRegister(cliente);
+                MessagesHelper.success("CLIENTE CADASTRADO COM SUCESSO!");
                 cadastroConcluido = true;
             }catch (SQLIntegrityConstraintViolationException e) {
                 System.err.print("Cliente já cadastrado com esse CPF/CNPJ. Vamos recomeçar o cadastro. Insira o nome: ");
@@ -39,7 +41,7 @@ public class ClienteService {
             clientes = clienteDAO.getAllClientes();
 
             if(clientes.isEmpty()){
-                System.out.println("\n|| ==== Nenhum cliente cadastrado no sistema. ==== ||");
+                System.out.println("Nenhum cliente cadastrado no sistema.");
             }else{
                 clienteList.PrintClienteList(clientes);
             }
@@ -57,12 +59,12 @@ public class ClienteService {
             clientes = clienteDAO.getClienteByCpfCnpjOrName(nameOrCpf);
 
             if (clientes.isEmpty()){
-                System.out.println("\n|| ==== Nenhum cliente encontrado com esse nome ou CPF/CNPJ. ==== ||");
+                System.out.println("|| ==== Nenhum cliente encontrado com esse nome ou CPF/CNPJ.");
             }else{
                 clienteList.PrintClienteList(clientes);
             }
         }catch (SQLException e){
-            System.out.println("\n|| ==== Erro ao buscar o cliente no sistema. ==== ||");
+            System.out.println("Erro ao buscar o cliente no sistema.");
         }
     }
 
@@ -76,14 +78,14 @@ public class ClienteService {
                 if(excluido){
                     System.out.println("\n|| ====== CLIENTE EXCLUÍDO COM SUCESSO! ====== ||");
                 }else{
-                    System.out.println("|| ==== NENHUM CLIENTE ENCONTRADO COM ESSE CPF/CNPJ. ==== ||");
+                    System.out.println("|| ==== NENHUM CLIENTE ENCONTRADO COM ESSE CPF/CNPJ.");
                 }
             }else{
-                System.out.println("\n|| ==== EXCLUSÃO CANCELADA PELO USUÁRIO ==== ||");
+                System.out.println("EXCLUSÃO CANCELADA PELO USUÁRIO");
             }
 
         }catch (SQLException e ){
-            System.out.println("\n|| ==== Erro ao excluir cliente no sistema. ==== ||");
+            System.out.println("Erro ao excluir cliente no sistema.");
         }
     }
 

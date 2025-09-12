@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Inputs {
+public class InputHelper {
 
     public static int inputInteger(String mensagem, Scanner sc){
 
@@ -17,7 +17,7 @@ public class Inputs {
                 leitura = Integer.parseInt(leituraStr);
                 break;
             } catch (NumberFormatException e) {
-                Errors.invalidIntInput();
+                MessagesHelper.invalidIntInput();
                 continue;
             }
         }while(true);
@@ -34,7 +34,7 @@ public class Inputs {
                 leitura = Double.parseDouble(leituraStr);
                 break;
             } catch (NumberFormatException e) {
-                Errors.invalidIntInput();
+                MessagesHelper.invalidIntInput();
                 continue;
             }
         }while(true);

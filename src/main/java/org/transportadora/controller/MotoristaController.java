@@ -1,7 +1,7 @@
 package org.transportadora.controller;
 
 import org.transportadora.service.MotoristaService;
-import org.transportadora.view.Errors;
+import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.MotoristaMenus;
 
 public class MotoristaController {
@@ -35,7 +35,7 @@ public class MotoristaController {
                 }//BREAK CASE 0 DO SWITCH OPCAO - SAIR DO MENU MOTORISTA
 
                 default -> {
-                    Errors.invalidOption();
+                    MessagesHelper.error(" Opção inválida! Tente novamente.\n");
                 } //BREAK DEFAULT DO SWITCH OPCAO - OPÇÃO INVÁLIDA
             }
         }while(true);

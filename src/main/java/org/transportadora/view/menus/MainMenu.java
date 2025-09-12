@@ -1,12 +1,12 @@
 package org.transportadora.view.menus;
 
-import org.transportadora.view.Inputs;
+import org.transportadora.view.InputHelper;
 
 import java.util.Scanner;
 
 public class MainMenu {
 
-    Inputs inputs = new Inputs();
+    InputHelper inputHelper = new InputHelper();
     Scanner sc = new Scanner(System.in);
 
     public int mainMenu(){
@@ -20,7 +20,7 @@ public class MainMenu {
                 || 0 - SAIR DO SISTEMA
                 || ============================================
                 """);
-            int option = inputs.inputInteger("|| Escolha uma opção: ", sc);
+            int option = inputHelper.inputInteger("|| Escolha uma opção: ", sc);
             return option;
     }
 }

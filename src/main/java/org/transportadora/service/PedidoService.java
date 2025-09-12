@@ -3,6 +3,7 @@ package org.transportadora.service;
 import org.transportadora.dao.PedidoDAO;
 import org.transportadora.model.Pedido;
 import org.transportadora.model.Pedido;
+import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.ClienteMenus;
 import org.transportadora.view.menus.PedidoMenus;
 import org.transportadora.view.utils.ClientSearchByNameOrCpf;
@@ -24,6 +25,7 @@ public class PedidoService {
 
             try{
                 pedidoDAO.pedidoRegister(pedido);
+                MessagesHelper.success("PEDIDO CADASTRADO COM SUCESSO!");
                 cadastroConcluido = true;
             }catch (SQLException e){
                 e.printStackTrace();
@@ -38,7 +40,7 @@ public class PedidoService {
             pedidos = pedidoDAO.getAllPedidos();
 
             if(pedidos.isEmpty()){
-                System.out.println("\n|| ==== Nenhum pedido cadastrado no sistema. ==== ||");
+                MessagesHelper.error("Nenhum pedido cadastrado no sistema.");
             }else{
                 pedidoList.PrintPedidoList(pedidos);
             }
@@ -56,12 +58,12 @@ public class PedidoService {
             pedidos = pedidoDAO.getPedidoByCpfCnpjOrNameCliente(nameOrCpf);
 
             if (pedidos.isEmpty()){
-                System.out.println("|| ==== Nenhum pedido encontrado com esse nome ou CPF/CNPJ. ==== ||");
+                MessagesHelper.error("Nenhum pedido encontrado com esse nome ou CPF/CNPJ.");
             }else{
                 pedidoList.PrintPedidoList(pedidos);
             }
         }catch (SQLException e){
-            System.out.println("\n|| ==== Erro ao buscar o pedido no sistema. ==== ||");
+            MessagesHelper.error("Erro ao buscar o pedido no sistema.");
         }
     }
 
@@ -71,12 +73,12 @@ public class PedidoService {
             boolean atualizado = pedidoDAO.deliverPedido(idPedido);
 
             if(atualizado){
-                System.out.println("\n|| ====== PEDIDO ENTREGUE COM SUCESSO! ====== ||");
+                MessagesHelper.success("PEDIDO ENTREGUE COM SUCESSO!");
             }else{
-                System.out.println("|| ==== ID NÃO ENCONTRADO OU ATUALIZAÇÃO NÃO AUTORIZADA ==== ||");
+                MessagesHelper.error("NÃO ENCONTRADO OU ATUALIZAÇÃO NÃO AUTORIZADA");
             }
         }catch (SQLException e ){
-            System.out.println("\n|| ==== Erro ao entregar o pedido no sistema. ==== ||");
+            MessagesHelper.error("Erro ao entregar o pedido no sistema.");
         }
     }
 
@@ -86,12 +88,12 @@ public class PedidoService {
             boolean atualizado = pedidoDAO.cancelPedido(idPedido);
 
             if(atualizado){
-                System.out.println("\n|| ====== PEDIDO CANCELADO COM SUCESSO! ====== ||");
+                MessagesHelper.success("PEDIDO CANCELADO COM SUCESSO!");
             }else{
-                System.out.println("|| ==== ID NÃO ENCONTRADO OU ATUALIZAÇÃO NÃO AUTORIZADA ==== ||");
+                MessagesHelper.error("NÃO ENCONTRADO OU ATUALIZAÇÃO NÃO AUTORIZADA");
             }
         }catch (SQLException e ){
-            System.out.println("\n|| ==== Erro ao cancelar o pedido no sistema. ==== ||");
+            MessagesHelper.error("Erro ao cancelar o pedido no sistema.");
         }
     }
 
@@ -103,16 +105,16 @@ public class PedidoService {
                 boolean excluido = pedidoDAO.deletePedido(idPedido);
 
                 if(excluido){
-                    System.out.println("\n|| ====== PEDIDO EXCLUÍDO COM SUCESSO! ====== ||");
+                    MessagesHelper.success("PEDIDO EXCLUÍDO COM SUCESSO!");
                 }else{
-                    System.out.println("|| ==== NENHUM PEDIDO ENCONTRADO COM ESSE ID ==== ||");
+                    MessagesHelper.error("NENHUM PEDIDO ENCONTRADO COM ESSE ID");
                 }
             }else{
-                System.out.println("\n|| ==== EXCLUSÃO CANCELADA PELO USUÁRIO ==== ||");
+                MessagesHelper.error("EXCLUSÃO CANCELADA PELO USUÁRIO");
             }
 
         }catch (SQLException e ){
-            System.out.println("\n|| ==== Erro ao excluir pedido no sistema. ==== ||");
+            MessagesHelper.error("Erro ao excluir pedido no sistema.");
         }
     }
 }

@@ -4,6 +4,7 @@ import org.transportadora.dao.interfaces.MotoristaDaoInterface;
 import org.transportadora.model.Motorista;
 import org.transportadora.model.enums.Estado;
 import org.transportadora.repository.ConnectDatabase;
+import org.transportadora.view.MessagesHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +25,6 @@ public class MotoristaDAO implements MotoristaDaoInterface {
             stmt.setString(3, motorista.getVeiculo());
             stmt.setString(4, motorista.getCidade_base());
             stmt.executeUpdate();
-            System.out.println("\n|| ====== MOTORISTA CADASTRADO COM SUCESSO! ====== ||");
         }
     }
 

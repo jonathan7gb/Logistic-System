@@ -7,6 +7,7 @@ import org.transportadora.model.enums.Estado;
 import org.transportadora.model.enums.StatusPedido;
 import org.transportadora.repository.ConnectDatabase;
 import org.transportadora.service.ClienteService;
+import org.transportadora.view.MessagesHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ public class PedidoDAO implements PedidoDaoInterface {
             stmt.setDouble(4, pedido.getPeso_kg());
             stmt.setString(5, String.valueOf(pedido.getStatus()));
             stmt.executeUpdate();
-            System.out.println("\n|| ====== PEDIDO CADASTRADO COM SUCESSO! ====== ||");
         }
     }
 

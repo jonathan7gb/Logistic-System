@@ -1,11 +1,8 @@
 package org.transportadora.view.menus;
 
 import org.transportadora.exceptions.InvalidCnhException;
-import org.transportadora.exceptions.InvalidCpfCnpjException;
 import org.transportadora.model.domain.CnhValidate;
-import org.transportadora.model.domain.CpfCnpjValidate;
-import org.transportadora.model.enums.Estado;
-import org.transportadora.view.Inputs;
+import org.transportadora.view.InputHelper;
 
 import java.util.Scanner;
 
@@ -23,19 +20,19 @@ public class MotoristaMenus {
                 || 0 - VOLTAR AO MENU PRINCIPAL
                 || =====================================================
                 """);
-        int opcao = Inputs.inputInteger("|| Escolha uma opção: ", sc);
+        int opcao = InputHelper.inputInteger("|| Escolha uma opção: ", sc);
         System.out.println();
         return opcao;
     }
 
     public static String nomeMotoristaInput(){
-        String nome = Inputs.inputString("|| Digite o nome do motorista: ", sc);
+        String nome = InputHelper.inputString("|| Digite o nome do motorista: ", sc);
         return nome;
     }
 
     public static String cnhMotoristaInput(){
         while(true) {
-            String cnh = Inputs.inputString("|| Digite a CNH do motorista: ", sc);
+            String cnh = InputHelper.inputString("|| Digite a CNH do motorista: ", sc);
 
             try {
                 boolean cnhValido = CnhValidate.validate(cnh);
@@ -50,12 +47,12 @@ public class MotoristaMenus {
     }
 
     public static String veiculoMotoristaInput(){
-        String veiculo = Inputs.inputString("|| Digite o veículo motorista: ", sc);
+        String veiculo = InputHelper.inputString("|| Digite o veículo motorista: ", sc);
         return veiculo;
     }
 
     public static String cidadeBaseMotoristaInput(){
-        String cidade_base = Inputs.inputString("|| Digite a cidade base do motorista: ", sc);
+        String cidade_base = InputHelper.inputString("|| Digite a cidade base do motorista: ", sc);
         return cidade_base;
     }
 

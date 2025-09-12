@@ -1,7 +1,7 @@
 package org.transportadora.controller;
 
 import org.transportadora.service.ClienteService;
-import org.transportadora.view.Errors;
+import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.ClienteMenus;
 
 public class ClienteController {
@@ -35,7 +35,7 @@ public class ClienteController {
                 }//BREAK CASE 0 DO SWITCH OPCAO - SAIR DO MENU CLIENTE
 
                 default -> {
-                    Errors.invalidOption();
+                    MessagesHelper.error(" Opção inválida! Tente novamente.\n");
                 } //BREAK DEFAULT DO SWITCH OPCAO - OPÇÃO INVÁLIDA
             }
         }while(true);

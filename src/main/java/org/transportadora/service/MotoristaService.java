@@ -2,6 +2,7 @@ package org.transportadora.service;
 
 import org.transportadora.dao.MotoristaDAO;
 import org.transportadora.model.Motorista;
+import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.MotoristaMenus;
 import org.transportadora.view.utils.MotoristaList;
 import org.transportadora.view.utils.MotoristaRegister;
@@ -23,6 +24,7 @@ public class MotoristaService {
 
             try{
                 motoristaDAO.motoristaRegister(motorista);
+                MessagesHelper.success("MOTORISTA CADASTRADO COM SUCESSO!");
                 cadastroConcluido = true;
             }catch (SQLIntegrityConstraintViolationException e) {
                 System.err.print("Motorista já cadastrado com esse CNH. Vamos recomeçar o cadastro. Insira o nome: ");
