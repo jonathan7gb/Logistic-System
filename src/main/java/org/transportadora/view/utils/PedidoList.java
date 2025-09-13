@@ -2,6 +2,7 @@ package org.transportadora.view.utils;
 
 import org.transportadora.model.Pedido;
 import org.transportadora.view.InputHelper;
+import org.transportadora.view.MessagesHelper;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class PedidoList {
             System.out.println("-----------------------------------------------------------------------");
         }
         }catch (InterruptedException e){
-            System.out.println("\n|| <=== ERRO AO LISTAR OS PEDIDOS ===> ||");
+            MessagesHelper.error("ERRO AO LISTAR OS PEDIDOS");
         }
     }
 

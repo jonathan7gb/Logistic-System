@@ -41,7 +41,7 @@ public class ClienteService {
             clientes = clienteDAO.getAllClientes();
 
             if(clientes.isEmpty()){
-                System.out.println("Nenhum cliente cadastrado no sistema.");
+                MessagesHelper.error("Nenhum cliente cadastrado no sistema.");
             }else{
                 clienteList.PrintClienteList(clientes);
             }
@@ -59,12 +59,12 @@ public class ClienteService {
             clientes = clienteDAO.getClienteByCpfCnpjOrName(nameOrCpf);
 
             if (clientes.isEmpty()){
-                System.out.println("|| ==== Nenhum cliente encontrado com esse nome ou CPF/CNPJ.");
+                MessagesHelper.error("Nenhum cliente encontrado com esse nome ou CPF/CNPJ.");
             }else{
                 clienteList.PrintClienteList(clientes);
             }
         }catch (SQLException e){
-            System.out.println("Erro ao buscar o cliente no sistema.");
+            MessagesHelper.error("Erro ao buscar o cliente no sistema.");
         }
     }
 
@@ -76,16 +76,16 @@ public class ClienteService {
                 boolean excluido = clienteDAO.deleteCliente(cpfCnpj);
 
                 if(excluido){
-                    System.out.println("\n|| ====== CLIENTE EXCLUÍDO COM SUCESSO! ====== ||");
+                    MessagesHelper.success("\nCLIENTE EXCLUÍDO COM SUCESSO!");
                 }else{
-                    System.out.println("|| ==== NENHUM CLIENTE ENCONTRADO COM ESSE CPF/CNPJ.");
+                    MessagesHelper.error("NENHUM CLIENTE ENCONTRADO COM ESSE CPF/CNPJ.");
                 }
             }else{
-                System.out.println("EXCLUSÃO CANCELADA PELO USUÁRIO");
+                MessagesHelper.error("EXCLUSÃO CANCELADA PELO USUÁRIO");
             }
 
         }catch (SQLException e ){
-            System.out.println("Erro ao excluir cliente no sistema.");
+            MessagesHelper.error("Erro ao excluir cliente no sistema.");
         }
     }
 

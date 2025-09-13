@@ -32,9 +32,8 @@ public class SystemController {
                     return;
                 }
                 default -> {
-                    MessagesHelper.error(" Opção inválida! Tente novamente.\n");
+                    MessagesHelper.error("Opção inválida! Tente novamente.\n");
                 }
-
             }
         }while(true);
 

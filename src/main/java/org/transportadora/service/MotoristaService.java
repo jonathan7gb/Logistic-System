@@ -41,7 +41,7 @@ public class MotoristaService {
             motoristas = motoristaDAO.getAllMotoristas();
 
             if(motoristas.isEmpty()){
-                System.out.println("|| ==== Nenhum motorista cadastrado no sistema. ==== ||");
+                MessagesHelper.error("Nenhum motorista cadastrado no sistema.");
             }else{
                 motoristaList.PrintMotoristaList(motoristas);
             }
@@ -59,12 +59,12 @@ public class MotoristaService {
             motoristas = motoristaDAO.getMotoristaByCnhOrName(nameOrCnh);
 
             if (motoristas.isEmpty()){
-                System.out.println("\n|| ==== Nenhum motorista encontrado com esse nome ou CNH. ==== ||");
+                MessagesHelper.error("Nenhum motorista encontrado com esse nome ou CNH.");
             }else{
                 motoristaList.PrintMotoristaList(motoristas);
             }
         }catch (SQLException e){
-            System.out.println("\n|| ==== Erro ao buscar o motorista no sistema. ==== ||");
+            MessagesHelper.error("Erro ao buscar o motorista no sistema.");
         }
     }
 
@@ -76,16 +76,16 @@ public class MotoristaService {
                 boolean excluido = motoristaDAO.deleteMotorista(cnh);
 
                 if(excluido){
-                    System.out.println("\n|| ====== MOTORISTA EXCLUÍDO COM SUCESSO! ====== ||");
+                    MessagesHelper.success("MOTORISTA EXCLUÍDO COM SUCESSO!");
                 }else{
-                    System.out.println("\n|| ==== NENHUM MOTORISTA ENCONTRADO COM ESSE CNH. ==== ||");
+                    MessagesHelper.error("NENHUM MOTORISTA ENCONTRADO COM ESSE CNH.");
                 }
             }else{
-                System.out.println("\n|| ==== EXCLUSÃO CANCELADA PELO USUÁRIO ==== ||");
+                MessagesHelper.error("EXCLUSÃO CANCELADA PELO USUÁRIO");
             }
 
         }catch (SQLException e ){
-            System.out.println("\n|| ==== Erro ao excluir motorista no sistema. ==== ||");
+            MessagesHelper.error("Erro ao excluir motorista no sistema.");
         }
     }
 }

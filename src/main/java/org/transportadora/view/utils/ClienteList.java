@@ -1,6 +1,7 @@
 package org.transportadora.view.utils;
 
 import org.transportadora.model.Cliente;
+import org.transportadora.view.MessagesHelper;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class ClienteList {
             System.out.println("-------------------------------------------------------------");
         }
         }catch (InterruptedException e){
-            System.out.println("\n|| <=== ERRO AO LISTAR OS CLIENTES ===> ||");
+            MessagesHelper.error("ERRO AO LISTAR OS CLIENTES");
         }
     }
 }

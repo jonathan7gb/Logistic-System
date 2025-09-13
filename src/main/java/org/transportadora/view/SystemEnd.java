@@ -29,7 +29,7 @@ public class SystemEnd {
             System.out.println(".  ");
             Thread.sleep(400);
         }catch (InterruptedException e){
-            System.out.println("\n|| O sistema foi encerrado inesperadamente. ||");
+            MessagesHelper.error("O sistema foi encerrado inesperadamente.");
         }
         System.out.println("|| ==========================================");
     }

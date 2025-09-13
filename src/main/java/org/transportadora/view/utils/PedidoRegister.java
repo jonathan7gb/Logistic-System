@@ -4,6 +4,7 @@ import org.transportadora.dao.ClienteDAO;
 import org.transportadora.model.Cliente;
 import org.transportadora.model.Pedido;
 import org.transportadora.model.enums.StatusPedido;
+import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.ClienteMenus;
 import org.transportadora.view.menus.PedidoMenus;
 
@@ -39,7 +40,7 @@ public class PedidoRegister {
 
         Cliente cliente = clientePedido();
         if(cliente == null){
-            System.out.println("\n|| ==== Cliente não encontrado. Por favor, verifique os dados do cliente. ==== ||");
+            MessagesHelper.error("Cliente não encontrado. Por favor, verifique os dados do cliente.");
             return null;
         }else{
             Date data = PedidoMenus.dataPedidoInput();

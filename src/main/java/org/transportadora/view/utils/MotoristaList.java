@@ -1,6 +1,7 @@
 package org.transportadora.view.utils;
 
 import org.transportadora.model.Motorista;
+import org.transportadora.view.MessagesHelper;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class MotoristaList {
             System.out.println("-------------------------------------------------------------");
         }
         }catch (InterruptedException e){
-            System.out.println("\n|| <=== ERRO AO LISTAR OS MOTORISTAS ===> ||");
+            MessagesHelper.error("ERRO AO LISTAR OS MOTORISTAS");
         }
     }
 }
