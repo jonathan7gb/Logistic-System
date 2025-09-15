@@ -64,19 +64,21 @@ public class EntregaRegister {
     public static Entrega registerEntrega(){
 
         Pedido pedido = pedidoEntrega();
-        Motorista motorista = motoristaEntrega();
-        if(pedido == null){
+        if(pedido == null) {
             MessagesHelper.error("Pedido não encontrado. Por favor, verifique os dados do pedido.");
             return null;
-        }else if(motorista == null){
-            MessagesHelper.error("Motorista não encontrado. Por favor, verifique os dados do motorista.");
-            return null;
         }else{
-            Date dataSaida = EntregaMenus.dataSaidaInput();
-            Date dataEntrega = EntregaMenus.dataEntregaInput();
-            StatusEntrega status = EntregaMenus.StatusEntrega();
+            Motorista motorista = motoristaEntrega();
+            if(motorista == null){
+                MessagesHelper.error("Motorista não encontrado. Por favor, verifique os dados do motorista.");
+                return null;
+            }else{
+                Date dataSaida = EntregaMenus.dataSaidaInput();
+                Date dataEntrega = EntregaMenus.dataEntregaInput();
+                StatusEntrega status = EntregaMenus.StatusEntrega();
 
-            return new Entrega(pedido, motorista, dataSaida, dataEntrega, status);
+                return new Entrega(pedido, motorista, dataSaida, dataEntrega, status);
+            }
         }
     }
 }

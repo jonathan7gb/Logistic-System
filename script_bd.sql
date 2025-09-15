@@ -99,4 +99,17 @@ END;
 
 DELIMITER ;
 
+-- Ativa o agendador de eventos (se não tiver ativado ainda)
+SET GLOBAL event_scheduler = ON;
+
+-- Cria evento que roda todo dia à meia-noite
+CREATE EVENT atualizar_entregas_atrasadas
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP
+DO
+    UPDATE Entrega
+    SET status = 'ATRASADA'
+    WHERE status = 'EM_ROTA'
+      AND data_entrega < CURDATE();
+
 

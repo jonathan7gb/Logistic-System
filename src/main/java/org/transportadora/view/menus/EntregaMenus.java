@@ -16,7 +16,7 @@ public class EntregaMenus {
                 \n|| ==================== MENU ENTREGA ==================== ||
                 || 1 - GERAR ENTREGA (ATRIBUIR A UM MOTORISTA)
                 || 2 - REGISTRAR EVENTO DE ENTREGA
-                || 3 - ATUALIZAR STATUS DA ENTREGA
+                || 3 - ATUALIZAR STATUS DE ENTREGA PARA ENTREGUE
                 || 4 - LISTAR TODAS ENTREGAS DE CLIENTE E MOTORISTA
                 || 5 - BUSCAR ENTREGA POR ID
                 || 6 - LISTAR TODAS AS ENTREGAS
