@@ -22,10 +22,11 @@ public class EntregaController {
                 }//BREAK CASE 2 DO SWITCH OPCAO - REGISTRAR EVENTO DE ENTREGA
 
                 case 3 -> {
+                    entregaService.updateEntregaStatus();
                 }//BREAK CASE 3 DO SWITCH OPCAO - ATUALIZAR STATUS DE ENTREGA PARA ENTREGUE
 
                 case 4 -> {
-
+                    entregaService.listEntregaByCpfCnpjOrCnh();
                 }//BREAK CASE 4 DO SWITCH OPCAO - LISTAR ENTREGAS DE CLIENTE E MOTORISTA
 
                 case 5 -> {

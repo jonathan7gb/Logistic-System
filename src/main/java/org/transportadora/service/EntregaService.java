@@ -32,6 +32,40 @@ public class EntregaService {
         }
     }
 
+    public void updateEntregaStatus(){
+        try{
+            int idEntrega = EntregaMenus.idEntregaInput();
+
+            boolean atualizado = entregaDAO.updateEntregaStatus(idEntrega);
+
+            if(atualizado){
+                MessagesHelper.success("STATUS DA ENTREGA ATUALIZADO COM SUCESSO!");
+            }else{
+                MessagesHelper.error("NENHUMA ENTREGA ENCONTRADA COM ESSE ID");
+            }
+        }catch (SQLException e ){
+            MessagesHelper.error("Erro ao atualizar status da entrega no sistema.");
+        }
+    }
+
+    public void listEntregaByCpfCnpjOrCnh(){
+        List<Entrega> entregas = new ArrayList<>();
+
+        try{
+            String cpfCnpjOrCnh = EntregaMenus.CnhOuCpfCnpjInput();
+            entregas = entregaDAO.getEntregaByCpfCnpjOrCnh(cpfCnpjOrCnh);
+
+            if (entregas.isEmpty()){
+                MessagesHelper.error("Nenhuma entrega encontrada com esse CPF/CNPJ ou CNH.");
+            }else{
+                System.out.println();
+                entregaList.PrintEntregaListClienteAndMotorista(entregas);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public void searchEntregaById(){
         List<Entrega> entregas = new ArrayList<>();
 

@@ -34,6 +34,11 @@ public class EntregaMenus {
         return id;
     }
 
+    public static String CnhOuCpfCnpjInput(){
+        String cnh_ou_cpf_cnpj = InputHelper.inputString("|| Digite a CNH do motorista ou o CPF/CNPJ do cliente: ", sc);
+        return cnh_ou_cpf_cnpj;
+    }
+
 
     public static Date dataSaidaInput(){
         Date dataSaida = InputHelper.inputDate("|| Digite a data de saída (dd/mm/aaaa): ", sc);

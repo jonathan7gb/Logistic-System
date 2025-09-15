@@ -24,6 +24,20 @@ public class EntregaList {
         }
     }
 
+    public void PrintEntregaListClienteAndMotorista(List<Entrega> lista_entregas){
+        System.out.println("|| ================== LISTA DE ENTREGAS ================== ||");
+        try{
+            for(Entrega e : lista_entregas){
+                Thread.sleep(300);
+                System.out.println("|| Entrega ID: " + e.getId() + " | Status: " + e.getStatus());
+                System.out.println("|| Cliente: " + e.getPedido().getCliente().getNome() + " | Motorista: " + e.getMotorista().getNome());
+                System.out.println("-------------------------------------------------------------");
+            }
+        }catch (InterruptedException e){
+            MessagesHelper.error("ERRO AO LISTAR AS ENTREGAS");
+        }
+    }
+
 
     public static boolean confirmDelete(){
         System.out.println("\n|| - Tem certeza que deseja excluir essa entrega?\n|| - Os eventos de entrega vinculadas a ela também serão excluídas!!\n|| - Essa ação é irreversível!");
