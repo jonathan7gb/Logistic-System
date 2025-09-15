@@ -7,14 +7,14 @@ public class MessagesHelper {
     }
 
     public static void error(String message) {
-        System.out.println("|| <| Erro |> " + message);
+        System.out.println("\n|| <| ERRO |> " + message);
     }
 
     public static void success(String message) {
-        System.out.println("|| <| Sucesso |> " + message);
+        System.out.println("\n|| <| SUCESSO |> " + message);
     }
 
     public static void info(String message) {
-        System.out.println("|| <| Info |>  " + message);
+        System.out.println("\n|| <| INFO |>  " + message);
     }
 }

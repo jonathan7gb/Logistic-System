@@ -76,7 +76,7 @@ public class ClienteService {
                 boolean excluido = clienteDAO.deleteCliente(cpfCnpj);
 
                 if(excluido){
-                    MessagesHelper.success("\nCLIENTE EXCLUÍDO COM SUCESSO!");
+                    MessagesHelper.success("CLIENTE EXCLUÍDO COM SUCESSO!");
                 }else{
                     MessagesHelper.error("NENHUM CLIENTE ENCONTRADO COM ESSE CPF/CNPJ.");
                 }
