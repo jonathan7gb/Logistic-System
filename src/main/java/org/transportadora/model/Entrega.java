@@ -78,6 +78,8 @@ public class Entrega {
         this.status = status;
     }
 
+
+
     @Override
     public String toString() {
         return "|| Entrega ID: " + id + " | Pedido ID: " + pedido.getId() + " | Motorista: " + motorista.getNome() + "\n|| Data Saída: " + dataSaida + " | Data Entrega: " + dataEntrega + " | Status: " + status;

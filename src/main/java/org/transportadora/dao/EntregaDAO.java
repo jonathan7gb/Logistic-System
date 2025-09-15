@@ -1,4 +1,69 @@
 package org.transportadora.dao;
 
+import org.transportadora.model.Cliente;
+import org.transportadora.model.Entrega;
+import org.transportadora.model.Motorista;
+import org.transportadora.model.Pedido;
+import org.transportadora.model.enums.StatusEntrega;
+import org.transportadora.model.enums.StatusPedido;
+import org.transportadora.repository.ConnectDatabase;
+import org.transportadora.service.MotoristaService;
+import org.transportadora.service.PedidoService;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntregaDAO {
+
+    PedidoService pedidoService = new PedidoService();
+    MotoristaService motoristaService = new MotoristaService();
+
+    public void entregaRegister(Entrega entrega) throws SQLException {
+        String sqlComand = "INSERT INTO Entrega (pedido_id, motorista_id, data_saida, data_entrega, status) VALUES (?, ?, ?, ?, ?)";
+
+
+        try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setInt(1, entrega.getPedido().getId());
+            stmt.setDouble(2, entrega.getMotorista().getId());
+            stmt.setDate(3, new java.sql.Date(entrega.getDataSaida().getTime()));
+            stmt.setDate(4, new java.sql.Date(entrega.getDataEntrega().getTime()));
+            stmt.setString(5, entrega.getStatus().name());
+            stmt.executeUpdate();
+        }
+    }
+
+    public List<Entrega> getAllEntregas() throws SQLException{
+        List<Entrega> lista_entregas = new ArrayList<>();
+
+        String sqlComand = "SELECT id, pedido_id, motorista_id, data_saida, data_entrega, status FROM Entrega";
+
+        try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                int pedido_id = rs.getInt("pedido_id");
+                int motorista_id = rs.getInt("motorista_id");
+                Date data_saida = rs.getDate("data_saida");
+                Date data_entrega = rs.getDate("data_entrega");
+                String status = rs.getString("status");
+
+                Pedido pedido = pedidoService.verifyIfExistsPedido(pedido_id);
+                Motorista motorista = motoristaService.verifyIfExistsMotorista(motorista_id);
+                if(pedido == null) {
+                    System.out.println("Pedido com ID " + pedido_id + " não encontrado. Pulando este entrega.");
+                    continue; // Pula para a próxima iteração do loop
+                }else if(motorista == null){
+                    System.out.println("Motorista com ID " + motorista_id + " não encontrado. Pulando este entrega.");
+                    continue; // Pula para a próxima iteração do loop
+                }else{
+                    Entrega entrega = new Entrega(id, pedido, motorista, data_saida, data_entrega, StatusEntrega.valueOf(status));
+                    lista_entregas.add(entrega);
+                }
+
+            }
+        }
+
+        return lista_entregas;
+    }
 }

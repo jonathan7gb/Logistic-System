@@ -19,13 +19,19 @@ public class SystemController {
                 case 1 -> {
                     ClienteController.clienteController(); // Chama o controlador de clientes
                 }
+
                 case 2 -> {
                     MotoristaController.motoristaController(); // Chama o controlador de motoristas
                 }
+
                 case 3 -> {
-                    PedidoController.pedidoController();
-                } // Chama o controlador de pedidos
-                case 4 -> {} // Chama o controlador de entregas
+                    PedidoController.pedidoController(); // Chama o controlador de pedidos
+                }
+
+                case 4 -> {
+                    EntregaController.entregaController(); // Chama o controlador de entregas
+                }
+
                 case 5 -> {} // Chama o controlador de relatórios
                 case 0 -> {
                     SystemEnd.systemEnd(); // Mensagem de encerramento do sistema

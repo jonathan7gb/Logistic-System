@@ -88,4 +88,21 @@ public class MotoristaService {
             MessagesHelper.error("Erro ao excluir motorista no sistema.");
         }
     }
+
+    public Motorista verifyIfExistsMotorista(int motoristaId) {
+        Motorista motorista = null;
+        List<Motorista> motoristas = new ArrayList<>();
+        try {
+            motoristas = motoristaDAO.getAllMotoristas();
+            for(Motorista m : motoristas){
+                if(m.getId() == motoristaId ){
+                    motorista =  new Motorista(m.getId(), m.getNome(), m.getCnh(), m.getVeiculo(), m.getCidade_base());
+                    return motorista;
+                }
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return motorista;
+    }
 }

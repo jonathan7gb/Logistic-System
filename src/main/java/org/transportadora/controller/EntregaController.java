@@ -15,6 +15,7 @@ public class EntregaController {
 
             switch (option) {
                 case 1 -> {
+                    entregaService.registerEntrega();
                 } //BREAK CASE 1 DO SWITCH OPCAO - GERAR ENTREGA
 
                 case 2 -> {
@@ -30,6 +31,7 @@ public class EntregaController {
                 }//BREAK CASE 5 DO SWITCH OPCAO - BUSCAR ENTREGA POR ID
 
                 case 6 -> {
+                    entregaService.getAllEntregas();
                 }//BREAK CASE 6 DO SWITCH OPCAO - LISTAR TODAS AS ENTREGA
 
                 case 7 -> {

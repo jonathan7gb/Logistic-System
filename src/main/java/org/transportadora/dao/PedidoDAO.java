@@ -3,11 +3,9 @@ package org.transportadora.dao;
 import org.transportadora.dao.interfaces.PedidoDaoInterface;
 import org.transportadora.model.Cliente;
 import org.transportadora.model.Pedido;
-import org.transportadora.model.enums.Estado;
 import org.transportadora.model.enums.StatusPedido;
 import org.transportadora.repository.ConnectDatabase;
 import org.transportadora.service.ClienteService;
-import org.transportadora.view.MessagesHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
