@@ -9,4 +9,7 @@ public interface EntregaDaoInterface {
 
     void entregaRegister(Entrega entrega)  throws SQLException;
     List<Entrega> getAllEntregas()  throws SQLException;
+    boolean deleteEntrega(int idEntrega)  throws SQLException;
+
+    List<Entrega> getEntregaById(int idEntrega)  throws SQLException;
 }

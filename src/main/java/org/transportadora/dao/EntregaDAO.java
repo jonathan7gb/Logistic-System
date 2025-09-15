@@ -1,5 +1,6 @@
 package org.transportadora.dao;
 
+import org.transportadora.dao.interfaces.EntregaDaoInterface;
 import org.transportadora.model.Cliente;
 import org.transportadora.model.Entrega;
 import org.transportadora.model.Motorista;
@@ -14,7 +15,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntregaDAO {
+public class EntregaDAO implements EntregaDaoInterface {
 
     PedidoService pedidoService = new PedidoService();
     MotoristaService motoristaService = new MotoristaService();
@@ -31,6 +32,40 @@ public class EntregaDAO {
             stmt.setString(5, entrega.getStatus().name());
             stmt.executeUpdate();
         }
+    }
+
+    public List<Entrega> getEntregaById(int idEntrega)  throws SQLException{
+        List<Entrega> lista_entregas = new ArrayList<>();
+
+        String sqlComand = "SELECT id, pedido_id, motorista_id, data_saida, data_entrega, status FROM Entrega WHERE id = ?";
+
+        try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setInt(1, idEntrega);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                int pedido_id = rs.getInt("pedido_id");
+                int motorista_id = rs.getInt("motorista_id");
+                Date data_saida = rs.getDate("data_saida");
+                Date data_entrega = rs.getDate("data_entrega");
+                String status = rs.getString("status");
+
+                Pedido pedido = pedidoService.verifyIfExistsPedido(pedido_id);
+                Motorista motorista = motoristaService.verifyIfExistsMotorista(motorista_id);
+                if(pedido == null) {
+                    System.out.println("Pedido com ID " + pedido_id + " não encontrado. Pulando este entrega.");
+                    continue;
+                }else if(motorista == null){
+                    System.out.println("Motorista com ID " + motorista_id + " não encontrado. Pulando este entrega.");
+                    continue;
+                }else{
+                    Entrega entrega = new Entrega(id, pedido, motorista, data_saida, data_entrega, StatusEntrega.valueOf(status));
+                    lista_entregas.add(entrega);
+                }
+            }
+        }
+
+        return lista_entregas;
     }
 
     public List<Entrega> getAllEntregas() throws SQLException{
@@ -52,10 +87,10 @@ public class EntregaDAO {
                 Motorista motorista = motoristaService.verifyIfExistsMotorista(motorista_id);
                 if(pedido == null) {
                     System.out.println("Pedido com ID " + pedido_id + " não encontrado. Pulando este entrega.");
-                    continue; // Pula para a próxima iteração do loop
+                    continue;
                 }else if(motorista == null){
                     System.out.println("Motorista com ID " + motorista_id + " não encontrado. Pulando este entrega.");
-                    continue; // Pula para a próxima iteração do loop
+                    continue;
                 }else{
                     Entrega entrega = new Entrega(id, pedido, motorista, data_saida, data_entrega, StatusEntrega.valueOf(status));
                     lista_entregas.add(entrega);
@@ -65,5 +100,18 @@ public class EntregaDAO {
         }
 
         return lista_entregas;
+    }
+
+    public boolean deleteEntrega(int idEntrega)  throws SQLException{
+        String sqlComand = "DELETE FROM Entrega WHERE id = ?";
+        boolean excluido = false;
+
+        try (Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setInt(1, idEntrega);
+            stmt.executeUpdate();
+            excluido = true;
+        }
+
+        return excluido;
     }
 }

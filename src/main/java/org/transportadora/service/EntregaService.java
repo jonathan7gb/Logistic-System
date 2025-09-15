@@ -3,9 +3,9 @@ package org.transportadora.service;
 import org.transportadora.dao.EntregaDAO;
 import org.transportadora.model.Entrega;
 import org.transportadora.view.MessagesHelper;
+import org.transportadora.view.menus.EntregaMenus;
 import org.transportadora.view.utils.EntregaList;
 import org.transportadora.view.utils.EntregaRegister;
-import org.transportadora.view.utils.PedidoList;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,6 +32,25 @@ public class EntregaService {
         }
     }
 
+    public void searchEntregaById(){
+        List<Entrega> entregas = new ArrayList<>();
+
+        try{
+            int idEntrega = EntregaMenus.idEntregaInput();
+            entregas = entregaDAO.getEntregaById(idEntrega);
+
+            if (entregas.isEmpty()){
+                MessagesHelper.error("Nenhuma entrega encontrada com esse ID.");
+            }else{
+                System.out.println();
+                entregaList.PrintEntregaList(entregas);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
     public void getAllEntregas(){
         List<Entrega> entregas = new ArrayList<>();
 
@@ -45,6 +64,27 @@ public class EntregaService {
             }
         }catch (SQLException e){
             e.printStackTrace();
+        }
+    }
+
+    public void deleteEntrega(){
+        try{
+            int idEntrega = EntregaMenus.idEntregaInput();
+            boolean confirmDelete = EntregaList.confirmDelete();
+            if(confirmDelete){
+                boolean excluido = entregaDAO.deleteEntrega(idEntrega);
+
+                if(excluido){
+                    MessagesHelper.success("ENTREGA EXCLUÍDA COM SUCESSO!");
+                }else{
+                    MessagesHelper.error("NENHUMA ENTREGA ENCONTRADA COM ESSE ID");
+                }
+            }else{
+                MessagesHelper.error("EXCLUSÃO CANCELADA PELO USUÁRIO");
+            }
+
+        }catch (SQLException e ){
+            MessagesHelper.error("Erro ao excluir entrega no sistema.");
         }
     }
 }

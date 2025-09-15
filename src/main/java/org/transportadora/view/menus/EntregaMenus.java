@@ -29,6 +29,10 @@ public class EntregaMenus {
         return opcao;
     }
 
+    public static int idEntregaInput(){
+        int id = InputHelper.inputInteger("|| Digite o ID da entrega: ", sc);
+        return id;
+    }
 
 
     public static Date dataSaidaInput(){

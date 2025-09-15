@@ -28,6 +28,7 @@ public class EntregaController {
                 }//BREAK CASE 4 DO SWITCH OPCAO - LISTAR ENTREGAS DE CLIENTE E MOTORISTA
 
                 case 5 -> {
+                    entregaService.searchEntregaById();
                 }//BREAK CASE 5 DO SWITCH OPCAO - BUSCAR ENTREGA POR ID
 
                 case 6 -> {
@@ -35,7 +36,7 @@ public class EntregaController {
                 }//BREAK CASE 6 DO SWITCH OPCAO - LISTAR TODAS AS ENTREGA
 
                 case 7 -> {
-
+                    entregaService.deleteEntrega();
                 }//BREAK CASE 7 DO SWITCH OPCAO - EXCLUIR ENTREGA
 
                 case 0 -> {

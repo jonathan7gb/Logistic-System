@@ -41,6 +41,19 @@ CREATE TABLE Entrega (
     FOREIGN KEY (pedido_id) REFERENCES Pedido(id) ON DELETE CASCADE,
     FOREIGN KEY (motorista_id) REFERENCES Motorista(id) ON DELETE CASCADE
 );
+select *  from Entrega;
+SELECT e.id AS entrega_id,
+       e.data_saida,
+       e.data_entrega,
+       e.status,
+       p.id AS pedido_id,
+       p.data_pedido,
+	   c.nome AS cliente_nome,
+       m.nome AS motorista_nome
+FROM Entrega e
+JOIN Pedido p ON e.pedido_id = p.id
+JOIN Cliente c  ON p.cliente_id = c.id
+JOIN Motorista m ON e.motorista_id = m.id;
 
 CREATE TABLE HistoricoEntrega (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,3 +62,41 @@ CREATE TABLE HistoricoEntrega (
     descricao VARCHAR(255),
     FOREIGN KEY (entrega_id) REFERENCES Entrega(id) ON DELETE CASCADE
 );
+select * from HistoricoEntrega;
+
+
+DELIMITER //
+
+-- Trigger para registrar novas entregas
+CREATE TRIGGER after_insert_entrega
+AFTER INSERT ON Entrega
+FOR EACH ROW
+BEGIN
+    INSERT INTO HistoricoEntrega (entrega_id, data_evento, descricao)
+    VALUES (NEW.id, NOW(), CONCAT('Entrega criada. Status inicial: ', NEW.status));
+END;
+//
+
+-- Trigger para registrar mudanças no status ou dados da entrega
+CREATE TRIGGER after_update_entrega
+AFTER UPDATE ON Entrega
+FOR EACH ROW
+BEGIN
+    INSERT INTO HistoricoEntrega (entrega_id, data_evento, descricao)
+    VALUES (NEW.id, NOW(), CONCAT('Entrega atualizada. Status anterior: ', OLD.status, ', Status atual: ', NEW.status));
+END;
+//
+
+-- Trigger para registrar exclusões de entregas
+CREATE TRIGGER before_delete_entrega
+BEFORE DELETE ON Entrega
+FOR EACH ROW
+BEGIN
+    INSERT INTO HistoricoEntrega (entrega_id, data_evento, descricao)
+    VALUES (OLD.id, NOW(), CONCAT('Entrega excluída. Status final: ', OLD.status));
+END;
+//
+
+DELIMITER ;
+
+
