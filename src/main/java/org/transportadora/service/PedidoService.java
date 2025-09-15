@@ -2,9 +2,7 @@ package org.transportadora.service;
 
 import org.transportadora.dao.PedidoDAO;
 import org.transportadora.model.Pedido;
-import org.transportadora.model.Pedido;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.ClienteMenus;
 import org.transportadora.view.menus.PedidoMenus;
 import org.transportadora.view.utils.ClientSearchByNameOrCpf;
 import org.transportadora.view.utils.PedidoList;
@@ -116,5 +114,22 @@ public class PedidoService {
         }catch (SQLException e ){
             MessagesHelper.error("Erro ao excluir pedido no sistema.");
         }
+    }
+
+    public Pedido verifyIfExistsPedido(int id){
+        Pedido pedido = null;
+        try{
+            List<Pedido> pedidos = pedidoDAO.getAllPedidos();
+            for(Pedido p : pedidos){
+                if(p.getId() == id){
+                    pedido = p;
+                    pedido = new Pedido(p.getId(), p.getCliente(), p.getDataPedido(), p.getVolume_m3(), p.getPeso_kg(), p.getStatus());
+                    break;
+                }
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pedido;
     }
 }

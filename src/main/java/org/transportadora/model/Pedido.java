@@ -83,4 +83,5 @@ public class Pedido {
     public String toString() {
         return "|| Pedido ID: " + id + " | Cliente: " + cliente.getNome() + " | Data do Pedido: " + dataPedido + "\n|| Volume (m³): " + volume_m3 + " | Peso (kg): " + peso_kg + " | Status: " + status.getDescricao();
     }
+
 }

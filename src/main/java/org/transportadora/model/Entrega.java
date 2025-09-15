@@ -80,6 +80,6 @@ public class Entrega {
 
     @Override
     public String toString() {
-        return "Entrega ID: " + id + " | Pedido: [" + pedido + "] | Motorista: [" + motorista + "] | Data Saída: " + dataSaida + " | Data Entrega: " + dataEntrega + " | Status: " + status;
+        return "|| Entrega ID: " + id + " | Pedido ID: " + pedido.getId() + " | Motorista: " + motorista.getNome() + "\n|| Data Saída: " + dataSaida + " | Data Entrega: " + dataEntrega + " | Status: " + status;
     }
 }
