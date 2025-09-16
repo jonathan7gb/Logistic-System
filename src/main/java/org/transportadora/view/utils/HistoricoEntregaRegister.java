@@ -2,9 +2,6 @@ package org.transportadora.view.utils;
 
 import org.transportadora.model.Entrega;
 import org.transportadora.model.HistoricoEntrega;
-import org.transportadora.model.Motorista;
-import org.transportadora.model.Pedido;
-import org.transportadora.model.enums.StatusEntrega;
 import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.EntregaMenus;
 
@@ -12,7 +9,7 @@ import java.util.Date;
 
 public class HistoricoEntregaRegister {
 
-    public static HistoricoEntrega registerHistoricoEntrega(){
+    public static HistoricoEntrega registerEventoEntrega(){
 
        Entrega entrega = EntregaRegister.searchEntrega();
         if(entrega == null) {

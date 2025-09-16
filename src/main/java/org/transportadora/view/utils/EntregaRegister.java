@@ -7,7 +7,6 @@ import org.transportadora.model.Entrega;
 import org.transportadora.model.Motorista;
 import org.transportadora.model.Pedido;
 import org.transportadora.model.enums.StatusEntrega;
-import org.transportadora.model.enums.StatusPedido;
 import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.EntregaMenus;
 import org.transportadora.view.menus.MotoristaMenus;

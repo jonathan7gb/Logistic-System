@@ -125,7 +125,7 @@ public class EntregaDAO implements EntregaDaoInterface {
         return excluido;
     }
 
-    public void historicoEntregaRegister(HistoricoEntrega historicoEntrega) throws SQLException{
+    public void eventoEntregaRegister(HistoricoEntrega historicoEntrega) throws SQLException{
         String sqlComand = "INSERT INTO HistoricoEntrega (entrega_id, data_evento, descricao) VALUES (?, ?, ?)";
         try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
             stmt.setInt(1, historicoEntrega.getEntrega().getId());

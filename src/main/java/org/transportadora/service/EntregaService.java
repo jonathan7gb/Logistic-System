@@ -84,13 +84,13 @@ public class EntregaService {
         }
     }
 
-    public void addHistoricoEntregas(){
+    public void addEventoEntrega(){
         boolean cadastroConcluido = false;
         while(!cadastroConcluido){
-            HistoricoEntrega historicoEntrega = HistoricoEntregaRegister.registerHistoricoEntrega();
+            HistoricoEntrega historicoEntrega = HistoricoEntregaRegister.registerEventoEntrega();
             try{
                 assert historicoEntrega != null;
-                entregaDAO.historicoEntregaRegister(historicoEntrega);
+                entregaDAO.eventoEntregaRegister(historicoEntrega);
                 MessagesHelper.success("EVENTO DE ENTREGA GERADA COM SUCESSO!");
                 cadastroConcluido = true;
             }catch (SQLException e){

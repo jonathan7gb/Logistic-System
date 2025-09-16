@@ -1,6 +1,5 @@
 package org.transportadora.dao.interfaces;
 
-import org.transportadora.model.Cliente;
 import org.transportadora.model.Motorista;
 
 import java.sql.SQLException;

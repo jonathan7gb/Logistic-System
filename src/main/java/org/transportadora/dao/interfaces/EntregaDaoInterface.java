@@ -2,7 +2,6 @@ package org.transportadora.dao.interfaces;
 
 import org.transportadora.model.Entrega;
 import org.transportadora.model.HistoricoEntrega;
-import org.transportadora.view.utils.HistoricoEntregaRegister;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,5 +16,5 @@ public interface EntregaDaoInterface {
 
     boolean updateEntregaStatus(int idEntrega) throws SQLException;
 
-    void historicoEntregaRegister(HistoricoEntrega historicoEntrega) throws SQLException;
+    void eventoEntregaRegister(HistoricoEntrega historicoEntrega) throws SQLException;
 }
