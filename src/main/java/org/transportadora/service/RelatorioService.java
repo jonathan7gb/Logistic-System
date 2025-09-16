@@ -1,10 +1,15 @@
 package org.transportadora.service;
 
+import org.transportadora.dao.PedidoDAO;
 import org.transportadora.dao.RelatorioDAO;
+import org.transportadora.model.Cliente;
 import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.MotoristaMenus;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
 
 public class RelatorioService {
 
@@ -29,7 +34,28 @@ public class RelatorioService {
     }
 
     public void clientesComMaiorVolumeEntregue() {
-        // Lógica para gerar o relatório de clientes com mais pedidos
+        try {
+            List<Map.Entry<Cliente, Double>> ranking = relatorioDAO.clientesComMaiorVolumeEntrega();
+
+            if (ranking.isEmpty()) {
+                MessagesHelper.error("Nenhum cliente com pedidos entregues.");
+                return;
+            }
+
+            System.out.println("=== Ranking de Clientes por Volume Entregue ===");
+            for (Map.Entry<Cliente, Double> entry : ranking) {
+                Cliente cliente = entry.getKey();
+                Double volume = entry.getValue();
+
+                System.out.printf("Cliente: %s | CPF/CNPJ: %s | Volume Total: %.2f m³%n",
+                        cliente.getNome(),
+                        cliente.getCpf_cnpj(),
+                        volume);
+            }
+
+        } catch (SQLException e) {
+            MessagesHelper.error("Erro ao gerar ranking de clientes: " + e.getMessage());
+        }
     }
 
     public void pedidosPendentePorEstado() {
