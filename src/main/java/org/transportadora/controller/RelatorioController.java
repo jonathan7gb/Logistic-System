@@ -15,16 +15,19 @@ public class RelatorioController {
 
             switch (option) {
                 case 1 -> {
-
+                    relatorioService.totalEntregasPorMotorista();
                 } //BREAK CASE 1 DO SWITCH OPCAO - TOTAL DE ENTREGAS POR MOTORISTA
 
                 case 2 -> {
+                    relatorioService.clientesComMaiorVolumeEntregue();
                 }//BREAK CASE 2 DO SWITCH OPCAO - CLIENTES COM MAIOR VOLUME ENTREGUE
 
                 case 3 -> {
+                    relatorioService.pedidosPendentePorEstado();
                 }//BREAK CASE 3 DO SWITCH OPCAO - PEDIDOS PENDENTES POR ESTADO
 
                 case 4 -> {
+                    relatorioService.entregasAtrasadasPorCidade();
                 }//BREAK CASE 4 DO SWITCH OPCAO - ENTREGAS ATRASADAS POR CIDADE
 
                 case 0 -> {
