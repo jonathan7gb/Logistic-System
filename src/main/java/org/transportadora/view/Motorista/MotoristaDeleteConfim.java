@@ -2,7 +2,11 @@ package org.transportadora.view.Motorista;
 
 import org.transportadora.view.InputHelper;
 
+import java.util.Scanner;
+
 public class MotoristaDeleteConfim {
+
+    static Scanner scannerInt = new Scanner(System.in);
 
     public static boolean confirmDelete(){
         System.out.println("\n|| - Tem certeza que deseja excluir esse motorista?\n|| - Os pedidos e entregas vinculadas a ele também serão excluídos!!\n|| - Essa ação é irreversível!");

@@ -2,7 +2,11 @@ package org.transportadora.view.Cliente;
 
 import org.transportadora.view.InputHelper;
 
+import java.util.Scanner;
+
 public class ClienteDeleteConfim {
+
+    static Scanner scannerInt = new Scanner(System.in);
 
     public static boolean confirmDelete(){
         System.out.println("\n|| - Tem certeza que deseja excluir esse cliente?\n|| - Os pedidos e entregas vinculadas a ele também serão excluídos!!\n|| - Essa ação é irreversível!");
