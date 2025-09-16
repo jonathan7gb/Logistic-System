@@ -15,9 +15,9 @@ import java.util.List;
 
 public class MotoristaDAO implements MotoristaDaoInterface {
 
+    //REGISTRAR MOTORISTA
     public void motoristaRegister(Motorista motorista) throws SQLException {
         String sqlComand = "INSERT INTO Motorista (nome, cnh, veiculo, cidade_base) VALUES (?, ?, ?, ?)";
-
 
         try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
             stmt.setString(1, motorista.getNome());
@@ -29,6 +29,10 @@ public class MotoristaDAO implements MotoristaDaoInterface {
     }
 
 
+    //========================================================================================
+
+
+    //LISTAR TODOS OS MOTORISTAS
     public List<Motorista> getAllMotoristas() throws SQLException{
         List<Motorista> lista_motoristas = new ArrayList<>();
 
@@ -47,11 +51,14 @@ public class MotoristaDAO implements MotoristaDaoInterface {
                 lista_motoristas.add(motorista);
             }
         }
-
         return lista_motoristas;
     }
 
 
+    //========================================================================================
+
+
+    //BUSCAR MOTORISTAS PELA CNH OU NOME
     public List<Motorista> getMotoristaByCnhOrName(String cnh)  throws SQLException {
         List<Motorista> lista_motoristas = new ArrayList<>();
 
@@ -73,11 +80,14 @@ public class MotoristaDAO implements MotoristaDaoInterface {
                 lista_motoristas.add(motorista);
             }
         }
-
         return lista_motoristas;
     }
 
 
+    //========================================================================================
+
+
+    //DELETAR MOTORISTA
     public boolean deleteMotorista(String cnh)  throws SQLException{
         String sqlComand = "DELETE FROM Motorista WHERE cnh = ?";
         boolean excluido = false;
@@ -87,7 +97,6 @@ public class MotoristaDAO implements MotoristaDaoInterface {
             stmt.executeUpdate();
             excluido = true;
         }
-
         return excluido;
     }
 }

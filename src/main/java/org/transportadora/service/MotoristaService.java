@@ -17,6 +17,9 @@ public class MotoristaService {
     MotoristaDAO motoristaDAO =  new MotoristaDAO();
     MotoristaList motoristaList = new MotoristaList();
 
+    //========================================================================================
+
+    //REGISTAR MOTORISTA
     public void registerMotorista(){
         boolean cadastroConcluido = false;
         while(!cadastroConcluido){
@@ -34,6 +37,11 @@ public class MotoristaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //LISTAR TODOS OS MOTORISTAS
     public void getAllMotoristas(){
         List<Motorista> motoristas = new ArrayList<>();
 
@@ -50,6 +58,11 @@ public class MotoristaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //BUSCAR MOTORISTAS PELA CNH OU NOME
     public void getMotoristaByCnhOrName(){
         List<Motorista> motoristas = new ArrayList<>();
 
@@ -68,6 +81,11 @@ public class MotoristaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //DELETAR MOTORISTA
     public void deleteMotorista(){
         try{
             String cnh = MotoristaMenus.cnhMotoristaInput();
@@ -89,6 +107,11 @@ public class MotoristaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //VERIFICAR SE O MOTORISTA EXISTE PELO ID E RETORNA ELE
     public Motorista verifyIfExistsMotorista(int motoristaId) {
         Motorista motorista = null;
         List<Motorista> motoristas = new ArrayList<>();

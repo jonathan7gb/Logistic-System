@@ -15,6 +15,9 @@ public class RelatorioService {
 
     RelatorioDAO relatorioDAO = new RelatorioDAO();
 
+    //========================================================================================
+
+    //TOTAL DE ENTREGAS POR MOTORISTA
     public void totalEntregasPorMotorista() {
         int motoristaId = MotoristaMenus.idMotoristaInput();
 
@@ -33,6 +36,10 @@ public class RelatorioService {
         }
     }
 
+
+    //========================================================================================
+
+    //CLIENTES COM MAIOR VOLUME DE ENTREGA
     public void clientesComMaiorVolumeEntregue() {
         try {
             List<Map.Entry<Cliente, Double>> ranking = relatorioDAO.clientesComMaiorVolumeEntrega();
@@ -58,10 +65,20 @@ public class RelatorioService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //PEDIDOS PENDENTES POR ESTADO
     public void pedidosPendentePorEstado() {
         // Lógica para gerar o relatório de pedidos pendentes por estado
     }
 
+
+    //========================================================================================
+
+
+    //ENTREGAS ATRASADAS POR CIDADE
     public void entregasAtrasadasPorCidade() {
         // Lógica para gerar o relatório de entregas atrasadas por cidade
     }

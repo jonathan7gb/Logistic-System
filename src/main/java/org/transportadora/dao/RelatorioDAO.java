@@ -23,6 +23,9 @@ public class RelatorioDAO implements RelatorioDaoInterface {
     PedidoService pedidoService = new PedidoService();
     ClienteService clienteService = new ClienteService();
 
+    //========================================================================================
+
+    //TOTAL DE ENTREGAS POR MOTORISTA
     public int totalEntregasPorMotorista(int motoristaId) throws SQLException{
         String sql = "SELECT COUNT(*) FROM Entrega WHERE motorista_id = ?";
         try (Connection conn = ConnectDatabase.connect();
@@ -37,6 +40,11 @@ public class RelatorioDAO implements RelatorioDaoInterface {
         return 0;
     }
 
+
+    //========================================================================================
+
+
+    //CLIENTES COM MAIOR VOLUME DE ENTREGA
     public List<Map.Entry<Cliente, Double>> clientesComMaiorVolumeEntrega() throws SQLException {
         Map<Cliente, Double> clientesVolume = new HashMap<>();
 
@@ -63,14 +71,16 @@ public class RelatorioDAO implements RelatorioDaoInterface {
                 }
             }
         }
-
-
         List<Map.Entry<Cliente, Double>> ranking = new ArrayList<>(clientesVolume.entrySet());
         ranking.sort((a, b) -> Double.compare(b.getValue(), a.getValue()));
 
         return ranking;
     }
-//
+
+
+    //========================================================================================
+
+
 //    public Map<Estado, Integer> totalEntregasPendentePorEstado() throws SQLException{
 //
 //    }

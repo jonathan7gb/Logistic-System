@@ -17,6 +17,11 @@ public class ClienteService {
     ClienteDAO clienteDAO =  new ClienteDAO();
     ClienteList clienteList = new ClienteList();
 
+
+    //========================================================================================
+
+
+    //REGISTRAR CLIENTE
     public void registerCliente(){
         boolean cadastroConcluido = false;
         while(!cadastroConcluido){
@@ -34,6 +39,11 @@ public class ClienteService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //LISTAR TODOS CLIENTES
     public void getAllClientes(){
         List<Cliente> clientes = new ArrayList<>();
 
@@ -50,6 +60,11 @@ public class ClienteService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //BUSCAR CLIENTE POR NOME OU CPF/CNPJ
     public void getClienteByCpfCnpjOrName(){
         List<Cliente> clientes = new ArrayList<>();
 
@@ -69,6 +84,11 @@ public class ClienteService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //DELETAR CLIENTE
     public void deleteCliente(){
         try{
             String cpfCnpj = ClienteMenus.cpfCnpjClienteInput();
@@ -90,6 +110,11 @@ public class ClienteService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //VERIFICAR SE CLIENTE EXISTE PELO ID (USADO PARA PEDIDO E ETC) E RETORNA ESSE CLIENTE
     public Cliente verifyIfExistsCliente(int id){
         Cliente cliente = null;
         try{

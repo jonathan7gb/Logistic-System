@@ -18,6 +18,9 @@ public class EntregaService {
    EntregaDAO entregaDAO =  new EntregaDAO();
    EntregaList entregaList = new EntregaList();
 
+    //========================================================================================
+
+    //REGISTRAR ENTREGA
     public void registerEntrega(){
         boolean cadastroConcluido = false;
         while(!cadastroConcluido){
@@ -34,6 +37,11 @@ public class EntregaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //ATUALIZAR STATUS DA ENTREGA
     public void updateEntregaStatus(){
         try{
             int idEntrega = EntregaMenus.idEntregaInput();
@@ -50,6 +58,11 @@ public class EntregaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //LISTAR ENTREGAS POR CPF/CNPJ/CNH
     public void listEntregaByCpfCnpjOrCnh(){
         List<Entrega> entregas = new ArrayList<>();
 
@@ -66,6 +79,11 @@ public class EntregaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //BUSCAR ENTREGA POR ID
     public void searchEntregaById(){
         List<Entrega> entregas = new ArrayList<>();
 
@@ -84,6 +102,11 @@ public class EntregaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //ADICIONAR EVENTO DE ENTREGA
     public void addEventoEntrega(){
         boolean cadastroConcluido = false;
         while(!cadastroConcluido){
@@ -100,6 +123,10 @@ public class EntregaService {
     }
 
 
+    //========================================================================================
+
+
+    //LISTAR TODAS ENTREGAS
     public void getAllEntregas(){
         List<Entrega> entregas = new ArrayList<>();
 
@@ -116,6 +143,11 @@ public class EntregaService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //DELETAR ENTREGA
     public void deleteEntrega(){
         try{
             int idEntrega = EntregaMenus.idEntregaInput();

@@ -16,9 +16,11 @@ public class PedidoDAO implements PedidoDaoInterface {
 
     ClienteService clienteService = new ClienteService();
 
+    //========================================================================================
+
+    //GERAR PEDIDO
     public void pedidoRegister(Pedido pedido) throws SQLException{
         String sqlComand = "INSERT INTO Pedido (cliente_id, data_pedido, volume_m3, peso_kg, status) VALUES (?, ?, ?, ?, ?)";
-
 
         try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
             stmt.setInt(1, pedido.getCliente().getId());
@@ -31,6 +33,10 @@ public class PedidoDAO implements PedidoDaoInterface {
     }
 
 
+    //========================================================================================
+
+
+    //LISTAR TODOS OS PEDIDOS
     public List<Pedido> getAllPedidos() throws SQLException{
         List<Pedido> lista_pedidos = new ArrayList<>();
 
@@ -57,11 +63,14 @@ public class PedidoDAO implements PedidoDaoInterface {
 
             }
         }
-
         return lista_pedidos;
     }
 
 
+    //========================================================================================
+
+
+    //LISTAR PEDIDOS PELO NOME OU CPF/CNPJ DO CLIENTE
     public List<Pedido> getPedidoByCpfCnpjOrNameCliente(String cpfOrName)  throws SQLException {
         List<Pedido> lista_pedidos = new ArrayList<>();
 
@@ -95,10 +104,14 @@ public class PedidoDAO implements PedidoDaoInterface {
                 }
             }
         }
-
         return lista_pedidos;
     }
 
+
+    //========================================================================================
+
+
+    //ENTREGAR PEDIDO
     public boolean deliverPedido(int idPedido)  throws SQLException{
         String sqlComand = "UPDATE Pedido SET status = 'ENTREGUE' WHERE id = ? AND status == 'PENDENTE'";
 
@@ -107,9 +120,13 @@ public class PedidoDAO implements PedidoDaoInterface {
             int rows = stmt.executeUpdate(); // pega quantas linhas foram afetadas
             return rows > 0;
         }
-
     }
 
+
+    //========================================================================================
+
+
+    //CANCELAR PEDIDO
     public boolean cancelPedido(int idPedido)  throws SQLException{
         String sqlComand = "UPDATE Pedido SET status = 'CANCELADO' WHERE id = ? AND status != 'ENTREGUE'";
 
@@ -118,9 +135,13 @@ public class PedidoDAO implements PedidoDaoInterface {
             int rows = stmt.executeUpdate(); // pega quantas linhas foram afetadas
             return rows > 0;
         }
-
     }
 
+
+    //========================================================================================
+
+
+    //DELETAR PEDIDO
     public boolean deletePedido(int idPedido)  throws SQLException{
         String sqlComand = "DELETE FROM Pedido WHERE id = ?";
 
@@ -129,7 +150,6 @@ public class PedidoDAO implements PedidoDaoInterface {
             int rows = stmt.executeUpdate(); // pega quantas linhas foram afetadas
             return rows > 0;
         }
-
     }
 
 }

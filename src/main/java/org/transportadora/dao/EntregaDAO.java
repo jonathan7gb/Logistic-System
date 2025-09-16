@@ -17,9 +17,11 @@ public class EntregaDAO implements EntregaDaoInterface {
     PedidoService pedidoService = new PedidoService();
     MotoristaService motoristaService = new MotoristaService();
 
+    //========================================================================================
+
+    //REGISTRAR ENTREGA
     public void entregaRegister(Entrega entrega) throws SQLException {
         String sqlComand = "INSERT INTO Entrega (pedido_id, motorista_id, data_saida, data_entrega, status) VALUES (?, ?, ?, ?, ?)";
-
 
         try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
             stmt.setInt(1, entrega.getPedido().getId());
@@ -31,6 +33,11 @@ public class EntregaDAO implements EntregaDaoInterface {
         }
     }
 
+
+    //========================================================================================
+
+
+    //ATUALIZAR STATUS DA ENTREGA PARA ENTREGUE
     public boolean updateEntregaStatus(int idEntrega) throws SQLException{
         String sqlComand = "UPDATE Entrega SET status = 'ENTREGUE' WHERE id = ?";
         boolean atualizado = false;
@@ -40,10 +47,14 @@ public class EntregaDAO implements EntregaDaoInterface {
             stmt.executeUpdate();
             atualizado = true;
         }
-
         return atualizado;
     }
 
+
+    //========================================================================================
+
+
+    //LISTAR ENTREGA POR ID
     public List<Entrega> getEntregaById(int idEntrega)  throws SQLException{
         List<Entrega> lista_entregas = new ArrayList<>();
 
@@ -74,10 +85,14 @@ public class EntregaDAO implements EntregaDaoInterface {
                 }
             }
         }
-
         return lista_entregas;
     }
 
+
+    //========================================================================================
+
+
+    //LISTAR TODAS AS ENTREGAS
     public List<Entrega> getAllEntregas() throws SQLException{
         List<Entrega> lista_entregas = new ArrayList<>();
 
@@ -108,10 +123,15 @@ public class EntregaDAO implements EntregaDaoInterface {
 
             }
         }
-
         return lista_entregas;
     }
 
+
+
+    //========================================================================================
+
+
+    //DELETAR ENTREGA
     public boolean deleteEntrega(int idEntrega)  throws SQLException{
         String sqlComand = "DELETE FROM Entrega WHERE id = ?";
         boolean excluido = false;
@@ -121,10 +141,15 @@ public class EntregaDAO implements EntregaDaoInterface {
             stmt.executeUpdate();
             excluido = true;
         }
-
         return excluido;
     }
 
+
+
+    //========================================================================================
+
+
+    //REGISTRAR EVENTO DE ENTREGA
     public void eventoEntregaRegister(HistoricoEntrega historicoEntrega) throws SQLException{
         String sqlComand = "INSERT INTO HistoricoEntrega (entrega_id, data_evento, descricao) VALUES (?, ?, ?)";
         try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {

@@ -16,6 +16,9 @@ public class PedidoService {
     PedidoDAO pedidoDAO =  new PedidoDAO();
     PedidoList pedidoList = new PedidoList();
 
+    //========================================================================================
+
+    //GERAR PEDIDO
     public void registerPedido(){
         boolean cadastroConcluido = false;
         while(!cadastroConcluido){
@@ -31,6 +34,11 @@ public class PedidoService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //LISTAR TODOS OS PEDIDOS
     public void getAllPedidos(){
         List<Pedido> pedidos = new ArrayList<>();
 
@@ -47,6 +55,11 @@ public class PedidoService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //BUSCAR PEDIDO PELO NOME OU CPF/CNPJ DO CLIENTE
     public void getPedidoByCpfCnpjOrName(){
         List<Pedido> pedidos = new ArrayList<>();
 
@@ -66,6 +79,11 @@ public class PedidoService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //ENTREGAR PEDIDO
     public void deliverPedido(){
         try{
             int idPedido = PedidoMenus.idPedidoInput();
@@ -81,6 +99,11 @@ public class PedidoService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //CANCELAR PEDIDO
     public void cancelPedido(){
         try{
             int idPedido = PedidoMenus.idPedidoInput();
@@ -96,6 +119,11 @@ public class PedidoService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //DELETAR PEDIDO
     public void deletePedido(){
         try{
             int idPedido = PedidoMenus.idPedidoInput();
@@ -117,6 +145,11 @@ public class PedidoService {
         }
     }
 
+
+    //========================================================================================
+
+
+    //VERIFICAR SE O PEDIDO EXISTE PELO ID E RETORNA ELE
     public Pedido verifyIfExistsPedido(int id){
         Pedido pedido = null;
         try{

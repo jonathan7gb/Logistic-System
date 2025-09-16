@@ -15,9 +15,10 @@ import java.util.List;
 
 public class ClienteDAO implements ClienteDaoInterface {
 
+
+    //REGISTRAR CLIENTE
     public void clienteRegister(Cliente cliente) throws SQLException{
         String sqlComand = "INSERT INTO Cliente (nome, cpf_cnpj, endereco, cidade, estado) VALUES (?, ?, ?, ?, ?)";
-
 
         try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
             stmt.setString(1, cliente.getNome());
@@ -30,6 +31,10 @@ public class ClienteDAO implements ClienteDaoInterface {
     }
 
 
+    //========================================================================================
+
+
+    //LISTAR CLIENTES
     public List<Cliente> getAllClientes() throws SQLException{
         List<Cliente> lista_clientes = new ArrayList<>();
 
@@ -49,11 +54,14 @@ public class ClienteDAO implements ClienteDaoInterface {
                 lista_clientes.add(cliente);
             }
         }
-
         return lista_clientes;
     }
 
 
+    //========================================================================================
+
+
+    //BUSCAR CLIENTE POR CPF/CNPJ OU NOME
     public List<Cliente> getClienteByCpfCnpjOrName(String cpfOrName)  throws SQLException {
         List<Cliente> lista_clientes = new ArrayList<>();
 
@@ -76,11 +84,14 @@ public class ClienteDAO implements ClienteDaoInterface {
                 lista_clientes.add(cliente);
             }
         }
-
         return lista_clientes;
     }
 
 
+    //========================================================================================
+
+
+    //DELETAR CLIENTE
     public boolean deleteCliente(String cpfCnpj)  throws SQLException{
         String sqlComand = "DELETE FROM Cliente WHERE cpf_cnpj = ?";
         boolean excluido = false;
@@ -90,7 +101,6 @@ public class ClienteDAO implements ClienteDaoInterface {
             stmt.executeUpdate();
             excluido = true;
         }
-
         return excluido;
     }
 
