@@ -28,8 +28,7 @@ public class ClienteMenus {
     }
 
     public static String nomeClienteInput(){
-        String nome = InputHelper.inputString("|| Digite o nome do cliente: ", sc);
-        return nome;
+        return InputHelper.inputString("|| Digite o nome do cliente: ", sc);
     }
 
     public static String cpfCnpjClienteInput(){
@@ -49,13 +48,11 @@ public class ClienteMenus {
     }
 
     public static String enderecoClienteInput(){
-        String endereco = InputHelper.inputString("|| Digite o endereço do cliente (Bairro, rua, nº da residência/local): ", sc);
-        return endereco;
+        return InputHelper.inputString("|| Digite o endereço do cliente (Bairro, rua, nº da residência/local): ", sc);
     }
 
     public static String cidadeClienteInput(){
-        String cidade = InputHelper.inputString("|| Digite a cidade do cliente: ", sc);
-        return cidade;
+        return InputHelper.inputString("|| Digite a cidade do cliente: ", sc);
     }
 
     public static Estado estadoClienteInput(){

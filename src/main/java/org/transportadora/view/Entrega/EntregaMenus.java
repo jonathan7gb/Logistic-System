@@ -29,39 +29,32 @@ public class EntregaMenus {
     }
 
     public static int idEntregaInput(){
-        int id = InputHelper.inputInteger("|| Digite o ID da entrega: ", sc);
-        return id;
+        return InputHelper.inputInteger("|| Digite o ID da entrega: ", sc);
     }
 
     public static String CnhOuCpfCnpjInput(){
-        String cnh_ou_cpf_cnpj = InputHelper.inputString("|| Digite a CNH do motorista ou o CPF/CNPJ do cliente: ", sc);
-        return cnh_ou_cpf_cnpj;
+        return InputHelper.inputString("|| Digite a CNH do motorista ou o CPF/CNPJ do cliente: ", sc);
     }
 
 
     public static Date dataSaidaInput(){
-        Date dataSaida = InputHelper.inputDate("|| Digite a data de saída (dd/mm/aaaa): ", sc);
-        return dataSaida;
+        return InputHelper.inputDate("|| Digite a data de saída (dd/mm/aaaa): ", sc);
     }
 
     public static Date dataEntregaInput(){
-        Date dataEntrega = InputHelper.inputDate("|| Digite a data de entrega (dd/mm/aaaa): ", sc);
-        return dataEntrega;
+        return InputHelper.inputDate("|| Digite a data de entrega (dd/mm/aaaa): ", sc);
     }
 
     public static StatusEntrega StatusEntrega(){
         StatusEntrega statusEnum = StatusEntrega.EM_ROTA; // Valor padrão
-
         return statusEnum;
     }
 
     public static Date dataAtualizacaoInput() {
-        Date dataAtualizacao = InputHelper.inputDate("|| Digite a data do evento (dd/mm/aaaa): ", sc);
-        return dataAtualizacao;
+        return InputHelper.inputDate("|| Digite a data do evento (dd/mm/aaaa): ", sc);
     }
 
     public static String descricaoInput() {
-        String descricao = InputHelper.inputString("|| Descreva o evento ocorrido na entrega: ", sc);
-        return descricao;
+        return InputHelper.inputString("|| Descreva o evento ocorrido na entrega: ", sc);
     }
 }

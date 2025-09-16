@@ -6,6 +6,10 @@ public class MessagesHelper {
         System.out.println("|| Entrada inválida! Por favor, insira um número inteiro.");
     }
 
+    public static void invalidDoubleInput() {
+        System.out.println("|| Entrada inválida! Por favor, insira um número decimal ou inteiro.");
+    }
+
     public static void error(String message) {
         System.out.println("\n|| <| ERRO |> " + message);
     }

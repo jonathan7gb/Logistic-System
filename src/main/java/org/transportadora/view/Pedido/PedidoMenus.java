@@ -28,17 +28,14 @@ public class PedidoMenus {
     }
 
     public static Date dataPedidoInput(){
-        Date dataPedido = InputHelper.inputDate("|| Digite a data do pedido (dd/mm/aaaa): ", sc);
-        return dataPedido;
+        return InputHelper.inputDate("|| Digite a data do pedido (dd/mm/aaaa): ", sc);
     }
 
     public static double volumeM3PedidoInput(){
-        double volume = InputHelper.inputDouble("|| Digite o volume em m³ do pedido: ", sc);
-        return volume;
+        return InputHelper.inputDouble("|| Digite o volume em m³ do pedido: ", sc);
     }
     public static double pesoKGPedidoInput(){
-        double peso = InputHelper.inputDouble("|| Digite o peso em KG do volume: ", sc);
-        return peso;
+        return InputHelper.inputDouble("|| Digite o peso em KG do volume: ", sc);
     }
 
     public static StatusPedido statusPedido(){
@@ -48,8 +45,7 @@ public class PedidoMenus {
     }
 
     public static int idPedidoInput(){
-        int idPedido = InputHelper.inputInteger("|| Digite o ID do pedido: ", sc);
-        return idPedido;
+        return InputHelper.inputInteger("|| Digite o ID do pedido: ", sc);
     }
 
 }

@@ -3,6 +3,7 @@ package org.transportadora.view.Motorista;
 import org.transportadora.exceptions.InvalidCnhException;
 import org.transportadora.model.domain.CnhValidate;
 import org.transportadora.view.InputHelper;
+import org.transportadora.view.MessagesHelper;
 
 import java.util.Scanner;
 
@@ -25,39 +26,33 @@ public class MotoristaMenus {
         return opcao;
     }
 
-    public static String nomeMotoristaInput(){
-        String nome = InputHelper.inputString("|| Digite o nome do motorista: ", sc);
-        return nome;
+    public static String nomeMotoristaInput() {
+        return InputHelper.inputString("|| Digite o nome do motorista: ", sc);
     }
 
-    public static String cnhMotoristaInput(){
-        while(true) {
+    public static String cnhMotoristaInput() {
+        while (true) {
             String cnh = InputHelper.inputString("|| Digite a CNH do motorista: ", sc);
 
             try {
-                boolean cnhValido = CnhValidate.validate(cnh);
-                if (cnhValido) {
+                if (CnhValidate.validate(cnh)) {
                     return cnh;
                 }
             } catch (InvalidCnhException e) {
-                System.out.println("\n|| ==> Erro: " + e.getMessage() + "\n");
+                MessagesHelper.error(e.getMessage()); // usar helper padronizado
             }
         }
-
     }
 
     public static String veiculoMotoristaInput(){
-        String veiculo = InputHelper.inputString("|| Digite o veículo motorista: ", sc);
-        return veiculo;
+        return InputHelper.inputString("|| Digite o veículo motorista: ", sc);
     }
 
     public static String cidadeBaseMotoristaInput(){
-        String cidade_base = InputHelper.inputString("|| Digite a cidade base do motorista: ", sc);
-        return cidade_base;
+        return InputHelper.inputString("|| Digite a cidade base do motorista: ", sc);
     }
 
     public static int idMotoristaInput() {
-        int id = InputHelper.inputInteger("|| Digite o ID do motorista: ", sc);
-        return id;
+        return InputHelper.inputInteger("|| Digite o ID do motorista: ", sc);
     }
 }

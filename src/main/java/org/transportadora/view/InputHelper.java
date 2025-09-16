@@ -38,7 +38,7 @@ public class InputHelper {
                 leitura = Double.parseDouble(leituraStr);
                 break;
             } catch (NumberFormatException e) {
-                MessagesHelper.invalidIntInput();
+                MessagesHelper.invalidDoubleInput();
                 continue;
             }
         }while(true);

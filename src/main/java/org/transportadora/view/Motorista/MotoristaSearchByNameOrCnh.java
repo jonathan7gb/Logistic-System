@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class MotoristaSearchByNameOrCnh {
 
     static Scanner scanner = new Scanner(System.in);
-    static Scanner scannerInt = new Scanner(System.in);
 
     public static String MotoristaNameOrCnh(){
         String nameOrCnh = InputHelper.inputString("|| - Insira o nome ou CNH do motorista: ", scanner);
