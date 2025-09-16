@@ -4,6 +4,7 @@ import org.transportadora.exceptions.InvalidCpfCnpjException;
 import org.transportadora.model.domain.CpfCnpjValidate;
 import org.transportadora.model.enums.Estado;
 import org.transportadora.view.InputHelper;
+import org.transportadora.view.MessagesHelper;
 
 import java.util.Scanner;
 
@@ -41,7 +42,7 @@ public class ClienteMenus {
                     return cpf_cnpj;
                 }
             } catch (InvalidCpfCnpjException e) {
-                System.out.println("\n|| ==> Erro: " + e.getMessage() + "\n");
+                MessagesHelper.error(e.getMessage());
             }
         }
 

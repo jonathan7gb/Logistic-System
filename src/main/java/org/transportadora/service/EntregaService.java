@@ -52,13 +52,11 @@ public class EntregaService {
         List<Entrega> entregas = new ArrayList<>();
 
         try{
-            String cpfCnpjOrCnh = EntregaMenus.CnhOuCpfCnpjInput();
-            entregas = entregaDAO.getEntregaByCpfCnpjOrCnh(cpfCnpjOrCnh);
+            entregas = entregaDAO.getAllEntregas();
 
-            if (entregas.isEmpty()){
-                MessagesHelper.error("Nenhuma entrega encontrada com esse CPF/CNPJ ou CNH.");
+            if(entregas.isEmpty()){
+                MessagesHelper.error("Nenhum entrega cadastrado no sistema.");
             }else{
-                System.out.println();
                 entregaList.PrintEntregaListClienteAndMotorista(entregas);
             }
         }catch (SQLException e){

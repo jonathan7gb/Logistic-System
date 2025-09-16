@@ -11,7 +11,6 @@ public class ClientSearchByNameOrCpf {
 
     public static String ClienteNameOrCpf(){
         String nameOrCpf = InputHelper.inputString("|| - Insira o nome ou CPF/CNPJ do cliente: ", scanner);
-        System.out.println();
         return nameOrCpf;
     }
 

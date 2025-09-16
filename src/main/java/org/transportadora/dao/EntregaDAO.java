@@ -128,43 +128,4 @@ public class EntregaDAO implements EntregaDaoInterface {
         return excluido;
     }
 
-    public List<Entrega> getEntregaByCpfCnpjOrCnh(String cpfCnpjOrCnh) throws SQLException{
-        List<Entrega> lista_entregas = new ArrayList<>();
-
-        String sqlComand = "SELECT e.id, e.pedido_id, e.motorista_id, e.data_saida, e.data_entrega, e.status " +
-                "FROM Entrega e " +
-                "JOIN Pedido p ON e.pedido_id = p.id " +
-                "JOIN Cliente c ON p.cliente_id = c.id " +
-                "JOIN Motorista m ON e.motorista_id = m.id " +
-                "WHERE c.cpf_cnpj = ? OR m.cnh = ?";
-
-        try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
-            stmt.setString(1, cpfCnpjOrCnh);
-            stmt.setString(2, cpfCnpjOrCnh);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                int id = rs.getInt("id");
-                int pedido_id = rs.getInt("pedido_id");
-                int motorista_id = rs.getInt("motorista_id");
-                Date data_saida = rs.getDate("data_saida");
-                Date data_entrega = rs.getDate("data_entrega");
-                String status = rs.getString("status");
-
-                Pedido pedido = pedidoService.verifyIfExistsPedido(pedido_id);
-                Motorista motorista = motoristaService.verifyIfExistsMotorista(motorista_id);
-                if(pedido == null) {
-                    System.out.println("Pedido com ID " + pedido_id + " não encontrado. Pulando este entrega.");
-                    continue;
-                }else if(motorista == null){
-                    System.out.println("Motorista com ID " + motorista_id + " não encontrado. Pulando este entrega.");
-                    continue;
-                }else{
-                    Entrega entrega = new Entrega(id, pedido, motorista, data_saida, data_entrega, StatusEntrega.valueOf(status));
-                    lista_entregas.add(entrega);
-                }
-            }
-        }
-
-        return lista_entregas;
-    }
 }

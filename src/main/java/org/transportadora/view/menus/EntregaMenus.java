@@ -15,11 +15,11 @@ public class EntregaMenus {
         System.out.print("""
                 \n|| ==================== MENU ENTREGA ==================== ||
                 || 1 - GERAR ENTREGA (ATRIBUIR A UM MOTORISTA)
-                || 2 - REGISTRAR EVENTO DE ENTREGA
-                || 3 - ATUALIZAR STATUS DE ENTREGA PARA ENTREGUE
-                || 4 - LISTAR TODAS ENTREGAS DE CLIENTE E MOTORISTA
-                || 5 - BUSCAR ENTREGA POR ID
-                || 6 - LISTAR TODAS AS ENTREGAS
+                || 2 - LISTAR TODAS ENTREGAS DE CLIENTE E MOTORISTA
+                || 3 - LISTAR TODAS AS ENTREGAS
+                || 4 - BUSCAR ENTREGA POR ID
+                || 5 - REGISTRAR EVENTO DE ENTREGA
+                || 6 - ATUALIZAR STATUS DE ENTREGA PARA ENTREGUE
                 || 7 - EXCLUIR ENTREGA
                 || 0 - VOLTAR AO MENU PRINCIPAL
                 || =====================================================

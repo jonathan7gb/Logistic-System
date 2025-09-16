@@ -19,23 +19,23 @@ public class EntregaController {
                 } //BREAK CASE 1 DO SWITCH OPCAO - GERAR ENTREGA
 
                 case 2 -> {
-                }//BREAK CASE 2 DO SWITCH OPCAO - REGISTRAR EVENTO DE ENTREGA
+                    entregaService.listEntregaByCpfCnpjOrCnh();
+                }//BREAK CASE 2 DO SWITCH OPCAO - LISTAR ENTREGAS DE CLIENTE E MOTORISTA
 
                 case 3 -> {
-                    entregaService.updateEntregaStatus();
-                }//BREAK CASE 3 DO SWITCH OPCAO - ATUALIZAR STATUS DE ENTREGA PARA ENTREGUE
+                    entregaService.getAllEntregas();
+                }//BREAK CASE 3 DO SWITCH OPCAO - LISTAR TODAS AS ENTREGAS
 
                 case 4 -> {
-                    entregaService.listEntregaByCpfCnpjOrCnh();
-                }//BREAK CASE 4 DO SWITCH OPCAO - LISTAR ENTREGAS DE CLIENTE E MOTORISTA
+                    entregaService.searchEntregaById();
+                }//BREAK CASE 4 DO SWITCH OPCAO - BUSCAR ENTREGA POR ID
 
                 case 5 -> {
-                    entregaService.searchEntregaById();
-                }//BREAK CASE 5 DO SWITCH OPCAO - BUSCAR ENTREGA POR ID
+                }//BREAK CASE 5 DO SWITCH OPCAO - REGISTRAR EVENTO DE ENTREGA
 
                 case 6 -> {
-                    entregaService.getAllEntregas();
-                }//BREAK CASE 6 DO SWITCH OPCAO - LISTAR TODAS AS ENTREGA
+                    entregaService.updateEntregaStatus();
+                }//BREAK CASE 6 DO SWITCH OPCAO - ATUALIZAR STATUS DE ENTREGA PARA ENTREGUE
 
                 case 7 -> {
                     entregaService.deleteEntrega();

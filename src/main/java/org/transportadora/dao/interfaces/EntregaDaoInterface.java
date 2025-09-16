@@ -15,5 +15,4 @@ public interface EntregaDaoInterface {
 
     boolean updateEntregaStatus(int idEntrega) throws SQLException;
 
-    List<Entrega> getEntregaByCpfCnpjOrCnh(String cpfCnpjOrCnh) throws SQLException;
 }

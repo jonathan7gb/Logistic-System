@@ -61,6 +61,7 @@ public class ClienteService {
             if (clientes.isEmpty()){
                 MessagesHelper.error("Nenhum cliente encontrado com esse nome ou CPF/CNPJ.");
             }else{
+                System.out.println();
                 clienteList.PrintClienteList(clientes);
             }
         }catch (SQLException e){

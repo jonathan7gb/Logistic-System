@@ -33,7 +33,7 @@ select * from Pedido;
 
 CREATE TABLE Entrega (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    pedido_id INT NOT NULL,
+    pedido_id INT NOT NULL UNIQUE,
     motorista_id INT NOT NULL,
     data_saida DATE,
     data_entrega DATE,
@@ -77,13 +77,20 @@ BEGIN
 END;
 //
 
--- Trigger para registrar mudanças no status ou dados da entrega
-CREATE TRIGGER after_update_entrega
+CREATE TRIGGER trg_update_entrega_status
 AFTER UPDATE ON Entrega
 FOR EACH ROW
 BEGIN
+    -- Se a entrega foi marcada como ENTREGUE
+    IF NEW.status = 'ENTREGUE' THEN
+        UPDATE Pedido
+        SET status = 'ENTREGUE'
+        WHERE id = NEW.pedido_id;
+    END IF;
+
+    -- Registrar no histórico
     INSERT INTO HistoricoEntrega (entrega_id, data_evento, descricao)
-    VALUES (NEW.id, NOW(), CONCAT('Entrega atualizada. Status anterior: ', OLD.status, ', Status atual: ', NEW.status));
+    VALUES (NEW.id, NOW(), CONCAT('Status alterado de ', OLD.status, ' para ', NEW.status));
 END;
 //
 

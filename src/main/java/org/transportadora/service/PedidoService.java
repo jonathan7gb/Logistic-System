@@ -58,6 +58,7 @@ public class PedidoService {
             if (pedidos.isEmpty()){
                 MessagesHelper.error("Nenhum pedido encontrado com esse nome ou CPF/CNPJ.");
             }else{
+                System.out.println();
                 pedidoList.PrintPedidoList(pedidos);
             }
         }catch (SQLException e){
