@@ -1,6 +1,5 @@
-package org.transportadora.view.menus;
+package org.transportadora.view.Relatorio;
 
-import org.transportadora.model.enums.Estado;
 import org.transportadora.view.InputHelper;
 
 import java.util.Scanner;

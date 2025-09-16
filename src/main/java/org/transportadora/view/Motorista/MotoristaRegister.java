@@ -1,7 +1,6 @@
-package org.transportadora.view.utils;
+package org.transportadora.view.Motorista;
 
 import org.transportadora.model.Motorista;
-import org.transportadora.view.menus.MotoristaMenus;
 
 public class MotoristaRegister {
 

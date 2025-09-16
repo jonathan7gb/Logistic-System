@@ -1,19 +1,8 @@
-package org.transportadora.view.utils;
+package org.transportadora.view.Cliente;
 
 import org.transportadora.view.InputHelper;
 
-import java.util.Scanner;
-
-public class ClientSearchByNameOrCpf {
-
-    static Scanner scanner = new Scanner(System.in);
-    static Scanner scannerInt = new Scanner(System.in);
-
-    public static String ClienteNameOrCpf(){
-        String nameOrCpf = InputHelper.inputString("|| - Insira o nome ou CPF/CNPJ do cliente: ", scanner);
-        return nameOrCpf;
-    }
-
+public class ClienteDeleteConfim {
 
     public static boolean confirmDelete(){
         System.out.println("\n|| - Tem certeza que deseja excluir esse cliente?\n|| - Os pedidos e entregas vinculadas a ele também serão excluídos!!\n|| - Essa ação é irreversível!");

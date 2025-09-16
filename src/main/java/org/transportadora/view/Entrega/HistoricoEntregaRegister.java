@@ -1,9 +1,8 @@
-package org.transportadora.view.utils;
+package org.transportadora.view.Entrega;
 
 import org.transportadora.model.Entrega;
 import org.transportadora.model.HistoricoEntrega;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.EntregaMenus;
 
 import java.util.Date;
 

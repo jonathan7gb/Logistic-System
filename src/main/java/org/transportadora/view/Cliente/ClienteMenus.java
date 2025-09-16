@@ -1,4 +1,4 @@
-package org.transportadora.view.menus;
+package org.transportadora.view.Cliente;
 
 import org.transportadora.exceptions.InvalidCpfCnpjException;
 import org.transportadora.model.domain.CpfCnpjValidate;

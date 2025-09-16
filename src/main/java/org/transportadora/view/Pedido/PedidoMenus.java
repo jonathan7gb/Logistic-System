@@ -1,4 +1,4 @@
-package org.transportadora.view.menus;
+package org.transportadora.view.Pedido;
 
 import org.transportadora.model.enums.StatusPedido;
 import org.transportadora.view.InputHelper;

@@ -3,10 +3,7 @@ package org.transportadora.service;
 import org.transportadora.dao.MotoristaDAO;
 import org.transportadora.model.Motorista;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.MotoristaMenus;
-import org.transportadora.view.utils.MotoristaList;
-import org.transportadora.view.utils.MotoristaRegister;
-import org.transportadora.view.utils.MotoristaSearchByNameOrCnh;
+import org.transportadora.view.Motorista.*;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -89,7 +86,7 @@ public class MotoristaService {
     public void deleteMotorista(){
         try{
             String cnh = MotoristaMenus.cnhMotoristaInput();
-            boolean confirmDelete = MotoristaSearchByNameOrCnh.confirmDelete();
+            boolean confirmDelete = MotoristaDeleteConfim.confirmDelete();
             if(confirmDelete){
                 boolean excluido = motoristaDAO.deleteMotorista(cnh);
 

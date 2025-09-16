@@ -3,11 +3,8 @@ package org.transportadora.service;
 import org.transportadora.dao.EntregaDAO;
 import org.transportadora.model.Entrega;
 import org.transportadora.model.HistoricoEntrega;
+import org.transportadora.view.Entrega.*;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.EntregaMenus;
-import org.transportadora.view.utils.EntregaList;
-import org.transportadora.view.utils.EntregaRegister;
-import org.transportadora.view.utils.HistoricoEntregaRegister;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -151,7 +148,7 @@ public class EntregaService {
     public void deleteEntrega(){
         try{
             int idEntrega = EntregaMenus.idEntregaInput();
-            boolean confirmDelete = EntregaList.confirmDelete();
+            boolean confirmDelete = EntregaDeleteConfim.confirmDelete();
             if(confirmDelete){
                 boolean excluido = entregaDAO.deleteEntrega(idEntrega);
 

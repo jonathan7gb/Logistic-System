@@ -1,6 +1,4 @@
-package org.transportadora.view.menus;
-
-import org.transportadora.view.InputHelper;
+package org.transportadora.view;
 
 import java.util.Scanner;
 

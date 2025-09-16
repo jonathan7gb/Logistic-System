@@ -3,10 +3,11 @@ package org.transportadora.service;
 import org.transportadora.dao.PedidoDAO;
 import org.transportadora.model.Pedido;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.PedidoMenus;
-import org.transportadora.view.utils.ClientSearchByNameOrCpf;
-import org.transportadora.view.utils.PedidoList;
-import org.transportadora.view.utils.PedidoRegister;
+import org.transportadora.view.Pedido.PedidoDeleteConfim;
+import org.transportadora.view.Pedido.PedidoMenus;
+import org.transportadora.view.Cliente.ClientSearchByNameOrCpf;
+import org.transportadora.view.Pedido.PedidoList;
+import org.transportadora.view.Pedido.PedidoRegister;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -127,7 +128,7 @@ public class PedidoService {
     public void deletePedido(){
         try{
             int idPedido = PedidoMenus.idPedidoInput();
-            boolean confirmDelete = PedidoList.confirmDelete();
+            boolean confirmDelete = PedidoDeleteConfim.confirmDelete();
             if(confirmDelete){
                 boolean excluido = pedidoDAO.deletePedido(idPedido);
 

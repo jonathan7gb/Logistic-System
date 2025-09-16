@@ -1,4 +1,4 @@
-package org.transportadora.view.menus;
+package org.transportadora.view.Motorista;
 
 import org.transportadora.exceptions.InvalidCnhException;
 import org.transportadora.model.domain.CnhValidate;

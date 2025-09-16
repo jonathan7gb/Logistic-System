@@ -2,7 +2,7 @@ package org.transportadora.controller;
 
 import org.transportadora.service.ClienteService;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.ClienteMenus;
+import org.transportadora.view.Cliente.ClienteMenus;
 
 public class ClienteController {
 

@@ -2,7 +2,7 @@ package org.transportadora.controller;
 
 import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.SystemEnd;
-import org.transportadora.view.menus.MainMenu;
+import org.transportadora.view.MainMenu;
 
 public class SystemController {
 

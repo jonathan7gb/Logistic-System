@@ -1,7 +1,6 @@
-package org.transportadora.view.menus;
+package org.transportadora.view.Entrega;
 
 import org.transportadora.model.enums.StatusEntrega;
-import org.transportadora.model.enums.StatusPedido;
 import org.transportadora.view.InputHelper;
 
 import java.util.Date;

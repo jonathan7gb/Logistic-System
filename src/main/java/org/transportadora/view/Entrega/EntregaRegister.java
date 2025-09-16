@@ -1,4 +1,4 @@
-package org.transportadora.view.utils;
+package org.transportadora.view.Entrega;
 
 import org.transportadora.dao.EntregaDAO;
 import org.transportadora.dao.MotoristaDAO;
@@ -8,9 +8,8 @@ import org.transportadora.model.Motorista;
 import org.transportadora.model.Pedido;
 import org.transportadora.model.enums.StatusEntrega;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.EntregaMenus;
-import org.transportadora.view.menus.MotoristaMenus;
-import org.transportadora.view.menus.PedidoMenus;
+import org.transportadora.view.Motorista.MotoristaMenus;
+import org.transportadora.view.Pedido.PedidoMenus;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

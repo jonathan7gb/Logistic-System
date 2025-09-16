@@ -1,12 +1,11 @@
-package org.transportadora.view.utils;
+package org.transportadora.view.Pedido;
 
 import org.transportadora.dao.ClienteDAO;
 import org.transportadora.model.Cliente;
 import org.transportadora.model.Pedido;
 import org.transportadora.model.enums.StatusPedido;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.ClienteMenus;
-import org.transportadora.view.menus.PedidoMenus;
+import org.transportadora.view.Cliente.ClienteMenus;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package org.transportadora.controller;
 
 import org.transportadora.service.RelatorioService;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.RelatorioMenus;
+import org.transportadora.view.Relatorio.RelatorioMenus;
 
 public class RelatorioController {
 

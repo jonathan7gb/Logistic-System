@@ -2,7 +2,7 @@ package org.transportadora.controller;
 
 import org.transportadora.service.MotoristaService;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.MotoristaMenus;
+import org.transportadora.view.Motorista.MotoristaMenus;
 
 public class MotoristaController {
 

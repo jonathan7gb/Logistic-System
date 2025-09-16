@@ -1,4 +1,4 @@
-package org.transportadora.view.utils;
+package org.transportadora.view.Cliente;
 
 import org.transportadora.model.Cliente;
 import org.transportadora.view.MessagesHelper;

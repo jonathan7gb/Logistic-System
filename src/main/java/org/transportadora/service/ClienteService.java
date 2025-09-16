@@ -2,11 +2,8 @@ package org.transportadora.service;
 
 import org.transportadora.dao.ClienteDAO;
 import org.transportadora.model.Cliente;
+import org.transportadora.view.Cliente.*;
 import org.transportadora.view.MessagesHelper;
-import org.transportadora.view.menus.ClienteMenus;
-import org.transportadora.view.utils.ClientSearchByNameOrCpf;
-import org.transportadora.view.utils.ClienteRegister;
-import org.transportadora.view.utils.ClienteList;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -92,7 +89,7 @@ public class ClienteService {
     public void deleteCliente(){
         try{
             String cpfCnpj = ClienteMenus.cpfCnpjClienteInput();
-            boolean confirmDelete = ClientSearchByNameOrCpf.confirmDelete();
+            boolean confirmDelete = ClienteDeleteConfim.confirmDelete();
             if(confirmDelete){
                 boolean excluido = clienteDAO.deleteCliente(cpfCnpj);
 
