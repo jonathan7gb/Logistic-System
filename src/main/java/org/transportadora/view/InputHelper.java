@@ -2,6 +2,7 @@ package org.transportadora.view;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -56,9 +57,9 @@ public class InputHelper {
     //=============================================================================
 
     //MÉTODO PARA LER E VALIDAR DATAS
-    public static Date inputDate(String mensagem, Scanner sc){
+    public static Date inputDate(String mensagem, Scanner sc) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        formato.setLenient(false); // para validar datas como 32/01/2020 (inválidas)
+        formato.setLenient(false); // evita datas tipo 32/01/2020
 
         while (true) {
             System.out.print(mensagem);
@@ -66,9 +67,31 @@ public class InputHelper {
 
             try {
                 Date data = formato.parse(input);
+
+                // pega dia, mês e ano
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(data);
+                int dia = cal.get(Calendar.DAY_OF_MONTH);
+                int mes = cal.get(Calendar.MONTH) + 1; // janeiro = 0
+                int ano = cal.get(Calendar.YEAR);
+
+                if (dia < 1 || dia > 31) {
+                    MessagesHelper.error("Dia inválido. Deve estar entre 01 e 31.");
+                    continue;
+                }
+                if (mes < 1 || mes > 12) {
+                    MessagesHelper.error("Mês inválido. Deve estar entre 01 e 12.");
+                    continue;
+                }
+                if (ano < 1900 || ano > 2026) { // limite máximo 2026
+                    MessagesHelper.error("Ano inválido. Deve estar entre 1900 e 2026.");
+                    continue;
+                }
+
                 return data;
+
             } catch (ParseException e) {
-                System.out.println("Data inválida. Use o formato dd/mm/yyyy.");
+                MessagesHelper.error("Data inválida. Use o formato dd/mm/yyyy.");
             }
         }
     }
