@@ -58,6 +58,32 @@ public class MotoristaDAO implements MotoristaDaoInterface {
     //========================================================================================
 
 
+    // BUSCAR MOTORISTA POR ID
+    public Motorista getMotoristaById(int id) throws SQLException {
+        String sql = "SELECT id, nome, cnh, veiculo, cidade_base FROM Motorista WHERE id = ?";
+        try (Connection conn = ConnectDatabase.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Motorista(
+                            rs.getInt("id"),
+                            rs.getString("nome"),
+                            rs.getString("cnh"),
+                            rs.getString("veiculo"),
+                            rs.getString("cidade_base")
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+
+    //========================================================================================
+
+
     //BUSCAR MOTORISTAS PELA CNH OU NOME
     public List<Motorista> getMotoristaByCnhOrName(String cnh)  throws SQLException {
         List<Motorista> lista_motoristas = new ArrayList<>();

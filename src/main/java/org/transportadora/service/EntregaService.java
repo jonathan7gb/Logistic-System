@@ -5,7 +5,6 @@ import org.transportadora.model.Entrega;
 import org.transportadora.model.HistoricoEntrega;
 import org.transportadora.view.Entrega.*;
 import org.transportadora.view.MessagesHelper;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

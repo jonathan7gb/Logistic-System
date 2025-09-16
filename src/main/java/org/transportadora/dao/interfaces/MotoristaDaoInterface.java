@@ -9,6 +9,7 @@ public interface MotoristaDaoInterface {
 
     void motoristaRegister(Motorista motorista)  throws SQLException;
     List<Motorista> getAllMotoristas()  throws SQLException;
+    Motorista getMotoristaById(int id) throws SQLException;
     List<Motorista> getMotoristaByCnhOrName(String cnhOrName)  throws SQLException;
     boolean deleteMotorista(String cnh)  throws SQLException;
 }

@@ -4,7 +4,6 @@ import org.transportadora.dao.RelatorioDAO;
 import org.transportadora.model.Cliente;
 import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.Motorista.MotoristaMenus;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;

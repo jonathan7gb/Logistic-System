@@ -27,7 +27,7 @@ public class MotoristaService {
                 MessagesHelper.success("MOTORISTA CADASTRADO COM SUCESSO!");
                 cadastroConcluido = true;
             }catch (SQLIntegrityConstraintViolationException e) {
-                System.err.print("Motorista já cadastrado com esse CNH. Vamos recomeçar o cadastro. Insira o nome: ");
+                MessagesHelper.error("Motorista já cadastrado com esse CNH. Vamos recomeçar o cadastro. Insira o nome: ");
             }catch (SQLException e){
                 e.printStackTrace();
             }
@@ -39,18 +39,16 @@ public class MotoristaService {
 
 
     //LISTAR TODOS OS MOTORISTAS
-    public void getAllMotoristas(){
-        List<Motorista> motoristas = new ArrayList<>();
-
-        try{
-            motoristas = motoristaDAO.getAllMotoristas();
-
-            if(motoristas.isEmpty()){
+    public void getAllMotoristas() {
+        try {
+            List<Motorista> motoristas = motoristaDAO.getAllMotoristas();
+            if (motoristas.isEmpty()) {
                 MessagesHelper.error("Nenhum motorista cadastrado no sistema.");
-            }else{
+            } else {
                 motoristaList.PrintMotoristaList(motoristas);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
+            MessagesHelper.error("Erro ao listar motoristas.");
             e.printStackTrace();
         }
     }
@@ -60,21 +58,23 @@ public class MotoristaService {
 
 
     //BUSCAR MOTORISTAS PELA CNH OU NOME
-    public void getMotoristaByCnhOrName(){
-        List<Motorista> motoristas = new ArrayList<>();
+    public void getMotoristaByCnhOrName() {
+        try {
+            String input = MotoristaSearchByNameOrCnh.MotoristaNameOrCnh();
+            if (input == null || input.trim().isEmpty()) {
+                MessagesHelper.error("Entrada inválida.");
+                return;
+            }
 
-        try{
-            String nameOrCnh = MotoristaSearchByNameOrCnh.MotoristaNameOrCnh();
-
-            motoristas = motoristaDAO.getMotoristaByCnhOrName(nameOrCnh);
-
-            if (motoristas.isEmpty()){
+            List<Motorista> motoristas = motoristaDAO.getMotoristaByCnhOrName(input);
+            if (motoristas.isEmpty()) {
                 MessagesHelper.error("Nenhum motorista encontrado com esse nome ou CNH.");
-            }else{
+            } else {
                 motoristaList.PrintMotoristaList(motoristas);
             }
-        }catch (SQLException e){
-            MessagesHelper.error("Erro ao buscar o motorista no sistema.");
+        } catch (SQLException e) {
+            MessagesHelper.error("Erro ao buscar motorista.");
+            e.printStackTrace();
         }
     }
 
@@ -83,24 +83,24 @@ public class MotoristaService {
 
 
     //DELETAR MOTORISTA
-    public void deleteMotorista(){
-        try{
+    public void deleteMotorista() {
+        try {
             String cnh = MotoristaMenus.cnhMotoristaInput();
-            boolean confirmDelete = MotoristaDeleteConfim.confirmDelete();
-            if(confirmDelete){
-                boolean excluido = motoristaDAO.deleteMotorista(cnh);
-
-                if(excluido){
-                    MessagesHelper.success("MOTORISTA EXCLUÍDO COM SUCESSO!");
-                }else{
-                    MessagesHelper.error("NENHUM MOTORISTA ENCONTRADO COM ESSE CNH.");
-                }
-            }else{
-                MessagesHelper.error("EXCLUSÃO CANCELADA PELO USUÁRIO");
+            if (!MotoristaDeleteConfim.confirmDelete()) {
+                MessagesHelper.error("Exclusão cancelada pelo usuário");
+                return;
             }
 
-        }catch (SQLException e ){
+            boolean excluido = motoristaDAO.deleteMotorista(cnh);
+            if (excluido) {
+                MessagesHelper.success("MOTORISTA EXCLUÍDO COM SUCESSO!");
+            } else {
+                MessagesHelper.error("Nenhum motorista encontrado com esse CNH.");
+            }
+
+        } catch (SQLException e) {
             MessagesHelper.error("Erro ao excluir motorista no sistema.");
+            e.printStackTrace();
         }
     }
 
@@ -109,20 +109,12 @@ public class MotoristaService {
 
 
     //VERIFICAR SE O MOTORISTA EXISTE PELO ID E RETORNA ELE
-    public Motorista verifyIfExistsMotorista(int motoristaId) {
-        Motorista motorista = null;
-        List<Motorista> motoristas = new ArrayList<>();
+    public Motorista verifyIfExistsMotorista(int id) {
         try {
-            motoristas = motoristaDAO.getAllMotoristas();
-            for(Motorista m : motoristas){
-                if(m.getId() == motoristaId ){
-                    motorista =  new Motorista(m.getId(), m.getNome(), m.getCnh(), m.getVeiculo(), m.getCidade_base());
-                    return motorista;
-                }
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
+            return motoristaDAO.getMotoristaById(id);
+        } catch (SQLException e) {
+            MessagesHelper.error("Erro ao buscar motorista pelo ID.");
+            return null;
         }
-        return motorista;
     }
 }
