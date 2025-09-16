@@ -1,10 +1,7 @@
 package org.transportadora.dao;
 
 import org.transportadora.dao.interfaces.EntregaDaoInterface;
-import org.transportadora.model.Cliente;
-import org.transportadora.model.Entrega;
-import org.transportadora.model.Motorista;
-import org.transportadora.model.Pedido;
+import org.transportadora.model.*;
 import org.transportadora.model.enums.StatusEntrega;
 import org.transportadora.model.enums.StatusPedido;
 import org.transportadora.repository.ConnectDatabase;
@@ -126,6 +123,16 @@ public class EntregaDAO implements EntregaDaoInterface {
         }
 
         return excluido;
+    }
+
+    public void historicoEntregaRegister(HistoricoEntrega historicoEntrega) throws SQLException{
+        String sqlComand = "INSERT INTO HistoricoEntrega (entrega_id, data_evento, descricao) VALUES (?, ?, ?)";
+        try(Connection conn = ConnectDatabase.connect(); PreparedStatement stmt = conn.prepareStatement(sqlComand)) {
+            stmt.setInt(1, historicoEntrega.getEntrega().getId());
+            stmt.setDate(2, new java.sql.Date(historicoEntrega.getDataAtualizacao().getTime()));
+            stmt.setString(3, historicoEntrega.getDescricao());
+            stmt.executeUpdate();
+        }
     }
 
 }

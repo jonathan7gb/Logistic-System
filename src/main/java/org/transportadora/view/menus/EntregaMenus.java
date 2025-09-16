@@ -55,4 +55,14 @@ public class EntregaMenus {
 
         return statusEnum;
     }
+
+    public static Date dataAtualizacaoInput() {
+        Date dataAtualizacao = InputHelper.inputDate("|| Digite a data do evento (dd/mm/aaaa): ", sc);
+        return dataAtualizacao;
+    }
+
+    public static String descricaoInput() {
+        String descricao = InputHelper.inputString("|| Descreva o evento ocorrido na entrega: ", sc);
+        return descricao;
+    }
 }

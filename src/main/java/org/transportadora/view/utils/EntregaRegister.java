@@ -1,5 +1,6 @@
 package org.transportadora.view.utils;
 
+import org.transportadora.dao.EntregaDAO;
 import org.transportadora.dao.MotoristaDAO;
 import org.transportadora.dao.PedidoDAO;
 import org.transportadora.model.Entrega;
@@ -58,6 +59,25 @@ public class EntregaRegister {
         }
 
         return motorista;
+    }
+
+    public static Entrega searchEntrega(){
+        int entregaId = EntregaMenus.idEntregaInput();
+        Entrega entrega = null;
+        List<Entrega> entregas = new ArrayList<>();
+        try {
+            entregas = new EntregaDAO().getAllEntregas();
+            for(Entrega e : entregas){
+                if(e.getId() == entregaId ){
+                    entrega =  new Entrega(e.getId(), e.getPedido(), e.getMotorista(), e.getDataSaida(), e.getDataEntrega(), e.getStatus());
+                    return entrega;
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return entrega;
     }
 
 

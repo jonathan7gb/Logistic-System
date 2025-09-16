@@ -2,10 +2,12 @@ package org.transportadora.service;
 
 import org.transportadora.dao.EntregaDAO;
 import org.transportadora.model.Entrega;
+import org.transportadora.model.HistoricoEntrega;
 import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.menus.EntregaMenus;
 import org.transportadora.view.utils.EntregaList;
 import org.transportadora.view.utils.EntregaRegister;
+import org.transportadora.view.utils.HistoricoEntregaRegister;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -79,6 +81,21 @@ public class EntregaService {
             }
         }catch (SQLException e){
             e.printStackTrace();
+        }
+    }
+
+    public void addHistoricoEntregas(){
+        boolean cadastroConcluido = false;
+        while(!cadastroConcluido){
+            HistoricoEntrega historicoEntrega = HistoricoEntregaRegister.registerHistoricoEntrega();
+            try{
+                assert historicoEntrega != null;
+                entregaDAO.historicoEntregaRegister(historicoEntrega);
+                MessagesHelper.success("EVENTO DE ENTREGA GERADA COM SUCESSO!");
+                cadastroConcluido = true;
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
         }
     }
 

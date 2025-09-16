@@ -31,6 +31,7 @@ public class EntregaController {
                 }//BREAK CASE 4 DO SWITCH OPCAO - BUSCAR ENTREGA POR ID
 
                 case 5 -> {
+                    entregaService.addHistoricoEntregas();
                 }//BREAK CASE 5 DO SWITCH OPCAO - REGISTRAR EVENTO DE ENTREGA
 
                 case 6 -> {
