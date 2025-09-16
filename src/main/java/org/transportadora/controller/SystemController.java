@@ -32,7 +32,10 @@ public class SystemController {
                     EntregaController.entregaController(); // Chama o controlador de entregas
                 }
 
-                case 5 -> {} // Chama o controlador de relatórios
+                case 5 -> {
+                    RelatorioController.relatorioController(); // Chama o controlador de relatórios
+                }
+
                 case 0 -> {
                     SystemEnd.systemEnd(); // Mensagem de encerramento do sistema
                     return;
