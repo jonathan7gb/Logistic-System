@@ -56,4 +56,8 @@ public class MotoristaMenus {
         return cidade_base;
     }
 
+    public static int idMotoristaInput() {
+        int id = InputHelper.inputInteger("|| Digite o ID do motorista: ", sc);
+        return id;
+    }
 }
