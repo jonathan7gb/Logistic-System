@@ -61,6 +61,34 @@ public class ClienteDAO implements ClienteDaoInterface {
     //========================================================================================
 
 
+    //VER SE O CLIENTE EXISTE NO BANCO
+    public Cliente getClienteById(int id) throws SQLException {
+        String sql = "SELECT id, nome, cpf_cnpj, endereco, cidade, estado FROM Cliente WHERE id = ?";
+        try (Connection conn = ConnectDatabase.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Estado estado = Estado.valueOf(rs.getString("estado"));
+                    return new Cliente(
+                            rs.getInt("id"),
+                            rs.getString("nome"),
+                            rs.getString("cpf_cnpj"),
+                            rs.getString("endereco"),
+                            rs.getString("cidade"),
+                            estado
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+
+    //========================================================================================
+
+
     //BUSCAR CLIENTE POR CPF/CNPJ OU NOME
     public List<Cliente> getClienteByCpfCnpjOrName(String cpfOrName)  throws SQLException {
         List<Cliente> lista_clientes = new ArrayList<>();

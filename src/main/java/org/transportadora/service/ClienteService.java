@@ -29,7 +29,7 @@ public class ClienteService {
                 MessagesHelper.success("CLIENTE CADASTRADO COM SUCESSO!");
                 cadastroConcluido = true;
             }catch (SQLIntegrityConstraintViolationException e) {
-                System.err.print("Cliente já cadastrado com esse CPF/CNPJ. Vamos recomeçar o cadastro. Insira o nome: ");
+                MessagesHelper.error("Cliente já cadastrado com esse CPF/CNPJ. Vamos recomeçar o cadastro. Insira o nome: ");
             }catch (SQLException e){
                 e.printStackTrace();
             }
@@ -42,18 +42,15 @@ public class ClienteService {
 
     //LISTAR TODOS CLIENTES
     public void getAllClientes(){
-        List<Cliente> clientes = new ArrayList<>();
-
-        try{
-            clientes = clienteDAO.getAllClientes();
-
-            if(clientes.isEmpty()){
+        try {
+            List<Cliente> clientes = clienteDAO.getAllClientes();
+            if (clientes.isEmpty()) {
                 MessagesHelper.error("Nenhum cliente cadastrado no sistema.");
-            }else{
+            } else {
                 clienteList.PrintClienteList(clientes);
             }
-        }catch (SQLException e){
-            e.printStackTrace();
+        } catch (SQLException e) {
+            MessagesHelper.error("Erro ao listar clientes.");
         }
     }
 
@@ -62,25 +59,26 @@ public class ClienteService {
 
 
     //BUSCAR CLIENTE POR NOME OU CPF/CNPJ
-    public void getClienteByCpfCnpjOrName(){
-        List<Cliente> clientes = new ArrayList<>();
+    public void getClienteByCpfCnpjOrName() {
+        try {
+            String input = ClientSearchByNameOrCpf.ClienteNameOrCpf();
+            if (input == null || input.trim().isEmpty()) {
+                MessagesHelper.error("Entrada inválida.");
+                return;
+            }
 
-        try{
-            String nameOrCpf = ClientSearchByNameOrCpf.ClienteNameOrCpf();
-
-            clientes = clienteDAO.getClienteByCpfCnpjOrName(nameOrCpf);
-
-            if (clientes.isEmpty()){
+            List<Cliente> clientes = clienteDAO.getClienteByCpfCnpjOrName(input);
+            if (clientes.isEmpty()) {
                 MessagesHelper.error("Nenhum cliente encontrado com esse nome ou CPF/CNPJ.");
-            }else{
+            } else {
                 System.out.println();
                 clienteList.PrintClienteList(clientes);
             }
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
             MessagesHelper.error("Erro ao buscar o cliente no sistema.");
         }
     }
-
 
     //========================================================================================
 
@@ -112,20 +110,12 @@ public class ClienteService {
 
 
     //VERIFICAR SE CLIENTE EXISTE PELO ID (USADO PARA PEDIDO E ETC) E RETORNA ESSE CLIENTE
-    public Cliente verifyIfExistsCliente(int id){
-        Cliente cliente = null;
-        try{
-            List<Cliente> clientes = clienteDAO.getAllClientes();
-            for(Cliente c : clientes){
-                if(c.getId() == id){
-                    cliente = c;
-                    cliente = new Cliente(c.getId(), c.getNome(), c.getCpf_cnpj(), c.getEndereco(), c.getCidade(), c.getEstado());
-                    break;
-                }
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
+    public Cliente verifyIfExistsCliente(int id) {
+        try {
+            return clienteDAO.getClienteById(id);
+        } catch (SQLException e) {
+            MessagesHelper.error("Erro ao buscar cliente pelo ID.");
+            return null;
         }
-        return cliente;
     }
 }

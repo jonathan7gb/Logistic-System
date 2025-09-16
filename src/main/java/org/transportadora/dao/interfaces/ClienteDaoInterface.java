@@ -9,6 +9,7 @@ public interface ClienteDaoInterface {
 
     void clienteRegister(Cliente cliente)  throws SQLException;
     List<Cliente> getAllClientes()  throws SQLException;
+    Cliente getClienteById(int id) throws SQLException;
     List<Cliente> getClienteByCpfCnpjOrName(String cpfOrName)  throws SQLException;
     boolean deleteCliente(String cpfCnpj)  throws SQLException;
 }
