@@ -81,9 +81,37 @@ public class RelatorioDAO implements RelatorioDaoInterface {
     //========================================================================================
 
 
-//    public Map<Estado, Integer> totalEntregasPendentePorEstado() throws SQLException{
-//
-//    }
+    //TOTAL DE PEDIDOS PENDENTES POR ESTADO
+    public Map<Estado, Integer> totalPedidosPendentePorEstado() throws SQLException {
+        Map<Estado, Integer> pedidosPorEstado = new HashMap<>();
+
+        String sql = """
+                SELECT c.estado, COUNT(*) AS total
+                   FROM Pedido p
+                   JOIN Cliente c ON p.cliente_id = c.id
+                   WHERE p.status = 'PENDENTE'
+                   GROUP BY c.estado
+                """;
+
+        try (Connection conn = ConnectDatabase.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String estadoStr = rs.getString("estado");
+                int total = rs.getInt("total");
+
+                try {
+                    Estado estado = Estado.valueOf(estadoStr);
+                    pedidosPorEstado.put(estado, total);
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Estado inválido encontrado no banco: " + estadoStr);
+                }
+            }
+        }
+
+        return pedidosPorEstado;
+    }
 //
 //    public Map<String, Integer> totalEntregasAtrasadasPorCidade() throws SQLException{
 //

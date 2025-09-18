@@ -20,6 +20,7 @@ CREATE TABLE Motorista (
 );
 select * from Motorista;
 
+
 CREATE TABLE Pedido (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cliente_id INT NOT NULL,
@@ -30,6 +31,7 @@ CREATE TABLE Pedido (
     FOREIGN KEY (cliente_id) REFERENCES Cliente(id) ON DELETE CASCADE
 );
 select * from Pedido;
+
 
 CREATE TABLE Entrega (
     id INT AUTO_INCREMENT PRIMARY KEY,

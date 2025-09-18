@@ -12,7 +12,7 @@ public interface RelatorioDaoInterface {
 
     int totalEntregasPorMotorista(int MotoristaId) throws SQLException;
     List<Map.Entry<Cliente, Double>> clientesComMaiorVolumeEntrega() throws SQLException;
-//    Map<Estado, Integer> totalEntregasPendentePorEstado() throws SQLException;
+    Map<Estado, Integer> totalPedidosPendentePorEstado() throws SQLException;
 //    Map<String, Integer> totalEntregasAtrasadasPorCidade() throws SQLException;
 
 }

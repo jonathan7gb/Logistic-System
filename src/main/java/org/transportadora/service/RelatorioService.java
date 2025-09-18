@@ -2,6 +2,7 @@ package org.transportadora.service;
 
 import org.transportadora.dao.RelatorioDAO;
 import org.transportadora.model.Cliente;
+import org.transportadora.model.enums.Estado;
 import org.transportadora.view.MessagesHelper;
 import org.transportadora.view.Motorista.MotoristaMenus;
 import java.sql.SQLException;
@@ -69,8 +70,26 @@ public class RelatorioService {
 
     //PEDIDOS PENDENTES POR ESTADO
     public void pedidosPendentePorEstado() {
-        // Lógica para gerar o relatório de pedidos pendentes por estado
-    }
+        try {
+            Map<Estado, Integer> pendentesPorEstado = relatorioDAO.totalPedidosPendentePorEstado();
+
+            if (pendentesPorEstado.isEmpty()) {
+                MessagesHelper.info("Nenhum pedido pendente encontrado.");
+                return;
+            }else{
+                System.out.println("|| ====== Total de Pedidos Pendentes por Estado ===== ||");
+                System.out.println("|| ================================================== ||");
+                System.out.println("\n|| Estado | Total de Pedidos Pendentes ");
+                for(Map.Entry<Estado, Integer> entry : pendentesPorEstado.entrySet()) {
+                    Estado estado = entry.getKey();
+                    Integer totalPendentes = entry.getValue();
+                    System.out.println("||   "+ estado  + "   |        " + totalPendentes);
+                }
+            }
+        } catch (SQLException e) {
+            MessagesHelper.error(e.getMessage());
+        }
+        }
 
 
     //========================================================================================
