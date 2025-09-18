@@ -11,6 +11,7 @@ import org.transportadora.repository.ConnectDatabase;
 import org.transportadora.service.ClienteService;
 import org.transportadora.service.MotoristaService;
 import org.transportadora.service.PedidoService;
+import org.transportadora.view.MessagesHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -105,17 +106,50 @@ public class RelatorioDAO implements RelatorioDaoInterface {
                     Estado estado = Estado.valueOf(estadoStr);
                     pedidosPorEstado.put(estado, total);
                 } catch (IllegalArgumentException e) {
-                    System.err.println("Estado inválido encontrado no banco: " + estadoStr);
+                    MessagesHelper.error("Estado inválido encontrado no banco: " + estadoStr);
                 }
             }
         }
 
         return pedidosPorEstado;
     }
-//
-//    public Map<String, Integer> totalEntregasAtrasadasPorCidade() throws SQLException{
-//
-//    }
+
+
+    //========================================================================================
+
+
+    //TOTAL DE ENTREGAS ATRASADAS POR CIDADE
+    public Map<String, Integer> totalEntregasAtrasadasPorCidade() throws SQLException{
+
+        Map<String, Integer> entregasAtrasadas = new HashMap<>();
+
+        String sql = """
+            SELECT c.cidade, COUNT(*) AS total
+            FROM Entrega e
+            JOIN Pedido p ON e.pedido_id = p.id
+            JOIN Cliente c ON p.cliente_id = c.id
+            WHERE e.status = 'ATRASADA'
+            GROUP BY c.cidade
+           """;
+
+        try (Connection conn = ConnectDatabase.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String cidade = rs.getString("cidade");
+                int total = rs.getInt("total");
+
+                try {
+                    entregasAtrasadas.put(cidade, total);
+                } catch (IllegalArgumentException e) {
+                    MessagesHelper.error("Cidade inválida encontrada no banco: " + cidade);
+                }
+            }
+        }
+
+        return entregasAtrasadas;
+    }
 
 
 }

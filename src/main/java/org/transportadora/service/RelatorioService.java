@@ -97,7 +97,25 @@ public class RelatorioService {
 
     //ENTREGAS ATRASADAS POR CIDADE
     public void entregasAtrasadasPorCidade() {
-        // Lógica para gerar o relatório de entregas atrasadas por cidade
+       try{
+            Map<String, Integer> entregasAtrasadas = relatorioDAO.totalEntregasAtrasadasPorCidade();
+
+            if(entregasAtrasadas.isEmpty()){
+                MessagesHelper.info("Nenhuma entrega atrasada encontrada.");
+                return;
+            }else{
+                System.out.println("|| ====== Total de Entregas Atrasadas por Cidade ===== ||");
+                System.out.println("|| ================================================== ||");
+                System.out.println("\n|| Cidade             | Total de Entregas Atrasadas ");
+                for(Map.Entry<String, Integer> entry : entregasAtrasadas.entrySet()) {
+                    String cidade = entry.getKey();
+                    Integer totalAtrasadas = entry.getValue();
+                    System.out.println("|| "+ cidade  + "     |        " + totalAtrasadas);
+                }
+            }
+       }catch (SQLException e){
+           MessagesHelper.error(e.getMessage());
+       }
     }
 
 }
