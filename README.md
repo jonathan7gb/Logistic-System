@@ -90,7 +90,7 @@ As tabelas possuem chaves primárias e estrangeiras, garantindo integridade refe
 
 ---
 
-## Estrutura Sugerida do Projeto
+## Estrutura do Projeto
 
 ```
 src/
