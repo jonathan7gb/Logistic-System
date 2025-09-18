@@ -137,7 +137,8 @@ public class RelatorioDAO implements RelatorioDaoInterface {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                String cidade = rs.getString("cidade");
+                String cidade = rs.getString(
+                        "cidade");
                 int total = rs.getInt("total");
 
                 try {
