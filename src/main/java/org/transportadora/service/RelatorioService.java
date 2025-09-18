@@ -48,19 +48,20 @@ public class RelatorioService {
                 return;
             }
 
-            System.out.println("=== Ranking de Clientes por Volume Entregue ===");
+            System.out.println("|| ==============  Ranking de Clientes por Volume Entregue  ============== ||");
+            System.out.println("|| ======================================================================= ||");
             for (Map.Entry<Cliente, Double> entry : ranking) {
                 Cliente cliente = entry.getKey();
                 Double volume = entry.getValue();
-
-                System.out.printf("Cliente: %s | CPF/CNPJ: %s | Volume Total: %.2f m³%n",
-                        cliente.getNome(),
-                        cliente.getCpf_cnpj(),
-                        volume);
+                Thread.sleep(300);
+                System.out.printf("|| %-20s | CPF/CNPJ: %-15s | Volume Total: %-20.2f\n",
+                        cliente.getNome(), cliente.getCpf_cnpj(), volume);
             }
 
         } catch (SQLException e) {
             MessagesHelper.error("Erro ao gerar ranking de clientes: " + e.getMessage());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -83,13 +84,16 @@ public class RelatorioService {
                 for(Map.Entry<Estado, Integer> entry : pendentesPorEstado.entrySet()) {
                     Estado estado = entry.getKey();
                     Integer totalPendentes = entry.getValue();
+                    Thread.sleep(300);
                     System.out.printf("|| %-10s | %-15d \n", estado, totalPendentes);
                 }
             }
         } catch (SQLException e) {
             MessagesHelper.error(e.getMessage());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-        }
+    }
 
 
     //========================================================================================
@@ -110,11 +114,14 @@ public class RelatorioService {
                 for(Map.Entry<String, Integer> entry : entregasAtrasadas.entrySet()) {
                     String cidade = entry.getKey();
                     Integer totalAtrasadas = entry.getValue();
+                    Thread.sleep(300);
                     System.out.printf("|| %-20s | %-15d \n", cidade, totalAtrasadas);
                 }
             }
        }catch (SQLException e){
            MessagesHelper.error(e.getMessage());
+       } catch (InterruptedException e) {
+           throw new RuntimeException(e);
        }
     }
 
