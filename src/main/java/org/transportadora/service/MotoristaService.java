@@ -87,7 +87,7 @@ public class MotoristaService {
         try {
             String cnh = MotoristaMenus.cnhMotoristaInput();
             if (!MotoristaDeleteConfim.confirmDelete()) {
-                MessagesHelper.error("Exclusão cancelada pelo usuário");
+                MessagesHelper.info("EXCLUSÃO CANCELADA PELO USUÁRIO");
                 return;
             }
 

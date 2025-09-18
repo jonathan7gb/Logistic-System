@@ -96,7 +96,7 @@ public class ClienteService {
                     MessagesHelper.error("NENHUM CLIENTE ENCONTRADO COM ESSE CPF/CNPJ.");
                 }
             }else{
-                MessagesHelper.error("EXCLUSÃO CANCELADA PELO USUÁRIO");
+                MessagesHelper.info("EXCLUSÃO CANCELADA PELO USUÁRIO");
             }
 
         }catch (SQLException e ){

@@ -157,7 +157,7 @@ public class EntregaService {
                     MessagesHelper.error("NENHUMA ENTREGA ENCONTRADA COM ESSE ID");
                 }
             }else{
-                MessagesHelper.error("EXCLUSÃO CANCELADA PELO USUÁRIO");
+                MessagesHelper.info("EXCLUSÃO CANCELADA PELO USUÁRIO");
             }
 
         }catch (SQLException e ){

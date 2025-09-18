@@ -138,7 +138,7 @@ public class PedidoService {
                     MessagesHelper.error("NENHUM PEDIDO ENCONTRADO COM ESSE ID");
                 }
             }else{
-                MessagesHelper.error("EXCLUSÃO CANCELADA PELO USUÁRIO");
+                MessagesHelper.info("EXCLUSÃO CANCELADA PELO USUÁRIO");
             }
 
         }catch (SQLException e ){
