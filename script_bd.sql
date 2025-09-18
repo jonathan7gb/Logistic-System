@@ -32,6 +32,11 @@ CREATE TABLE Pedido (
 );
 select * from Pedido;
 
+SELECT c.estado, COUNT(*) AS total
+            FROM Pedido p
+            JOIN Cliente c ON p.cliente_id = c.id
+            WHERE p.status = 'PENDENTE'
+            GROUP BY c.estado;
 
 CREATE TABLE Entrega (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -56,6 +61,13 @@ FROM Entrega e
 JOIN Pedido p ON e.pedido_id = p.id
 JOIN Cliente c  ON p.cliente_id = c.id
 JOIN Motorista m ON e.motorista_id = m.id;
+
+SELECT c.cidade, COUNT(*) AS total
+            FROM Entrega e
+            JOIN Pedido p ON e.pedido_id = p.id
+            JOIN Cliente c ON p.cliente_id = c.id
+            WHERE e.status = 'ATRASADA'
+            GROUP BY c.cidade;
 
 CREATE TABLE HistoricoEntrega (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -112,13 +124,15 @@ DELIMITER ;
 SET GLOBAL event_scheduler = ON;
 
 -- Cria evento que roda todo dia à meia-noite
+
 CREATE EVENT atualizar_entregas_atrasadas
-ON SCHEDULE EVERY 1 DAY
+ON SCHEDULE EVERY 1 HOUR
 STARTS CURRENT_TIMESTAMP
 DO
     UPDATE Entrega
     SET status = 'ATRASADA'
     WHERE status = 'EM_ROTA'
-      AND data_entrega < CURDATE();
+      AND data_entrega < NOW();
+SHOW EVENTS;
 
 

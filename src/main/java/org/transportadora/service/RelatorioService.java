@@ -79,11 +79,11 @@ public class RelatorioService {
             }else{
                 System.out.println("|| ====== Total de Pedidos Pendentes por Estado ===== ||");
                 System.out.println("|| ================================================== ||");
-                System.out.println("\n|| Estado | Total de Pedidos Pendentes ");
+                System.out.printf("|| %-10s | %-15s \n", "Estado", "Pedidos Pendentes");
                 for(Map.Entry<Estado, Integer> entry : pendentesPorEstado.entrySet()) {
                     Estado estado = entry.getKey();
                     Integer totalPendentes = entry.getValue();
-                    System.out.println("||   "+ estado  + "   |        " + totalPendentes);
+                    System.out.printf("|| %-10s | %-15d \n", estado, totalPendentes);
                 }
             }
         } catch (SQLException e) {
@@ -106,11 +106,11 @@ public class RelatorioService {
             }else{
                 System.out.println("|| ====== Total de Entregas Atrasadas por Cidade ===== ||");
                 System.out.println("|| ================================================== ||");
-                System.out.println("\n|| Cidade             | Total de Entregas Atrasadas ");
+                System.out.printf("|| %-20s | %-15s \n", "Cidade", "Entregas Atrasadas");
                 for(Map.Entry<String, Integer> entry : entregasAtrasadas.entrySet()) {
                     String cidade = entry.getKey();
                     Integer totalAtrasadas = entry.getValue();
-                    System.out.println("|| "+ cidade  + "     |        " + totalAtrasadas);
+                    System.out.printf("|| %-20s | %-15d \n", cidade, totalAtrasadas);
                 }
             }
        }catch (SQLException e){

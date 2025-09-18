@@ -11,14 +11,14 @@ public class MessagesHelper {
     }
 
     public static void error(String message) {
-        System.out.println("\n|| <| ERRO |> " + message);
+        System.out.println("\n\u001B[31m|| <| ERRO |> " + message + "\u001B[0m");
     }
 
     public static void success(String message) {
-        System.out.println("\n|| <| SUCESSO |> " + message);
+        System.out.println("\n\u001B[32m|| <| SUCESSO |> " + message + "\u001B[0m");
     }
 
     public static void info(String message) {
-        System.out.println("\n|| <| INFO |>  " + message);
+        System.out.println("\u001B[34m|| <| INFO |> " + message + "\u001B[0m");
     }
 }
